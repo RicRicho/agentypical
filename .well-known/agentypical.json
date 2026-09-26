@@ -1,0 +1,20 @@
+{
+  "name": "Agentypical",
+  "url": "https://agentypical.com",
+  "tagline": "built for agents from first contact",
+  "definition": "Designed so an autonomous software agent can discover, evaluate, enrol in, configure, pay for and use a service directly, with human sponsorship only where genuinely required.",
+  "brand": {
+    "commercial": "Agentypical",
+    "mechanism": "Agent First",
+    "standard": "Agentypical Standard",
+    "certification": "Agentypical Certified"
+  },
+  "endpoints": {
+    "human": "/",
+    "agent_brief": "/agent/",
+    "llms": "/llms.txt",
+    "questions": "/questions.json"
+  },
+  "status": "live",
+  "updated": "2026-09-26"
+}
