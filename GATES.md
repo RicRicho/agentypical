@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-26 (AEST)
 **Ticket:** RIC-193
-**Ship tip commit:** _(filled after push)_
+**Ship tip commit:** `d31d3ce3378e654e3f9d1e2fb23b07a8d5057c74`
 **Sources:** team wiki Agentypical/Interactive_build · Drive doc 1Pzhnp_HmJymGNdsjiyExstWL03rJvxoizq0VbeuTJHg · Ric go email thread b701636b
 
 | # | Gate | Status | Evidence |
