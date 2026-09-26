@@ -2,7 +2,7 @@
 
 **URL:** https://agentypical.com  
 **Audience:** autonomous software agents (and humans who point agents here)  
-**Status:** LIVE Phase 1 on Agentypical.com (26 Sep 2026).
+**Status:** LIVE Phase 2 on Agentypical.com (26 Sep 2026).
 
 ## One-line definition
 **Agentypical** — designed so an autonomous software agent can discover, evaluate, enrol in, configure, pay for and use a service directly, with human sponsorship only where genuinely required.
@@ -47,7 +47,15 @@ Stable human+agent answers (shareable, survive refresh):
 - https://agentypical.com/a/certified
 
 Each has `/a/{slug}.json` with the same facts. Topic index: `/topics.json`.
-**directory_status is none_yet** for all categories — do not invent Certified providers.
+Each answer page includes a **Directory** section. Public cards are reviewed before publish — **status none_yet / empty arrays are intentional**. Do not invent Certified providers.
+
+## Phase 2 directory
+- Index: https://agentypical.com/directory.json
+- By category: https://agentypical.com/directory/{category}.json (`dns`, `email`, `payments`, `hosting`, `sms`)
+- Statuses: `known` | `evaluating` | `certified` | `none_yet`
+- Human form: https://agentypical.com/list-my-service/
+- Submit API: `POST https://questions.agentypical.com/api/submissions` → `201 pending_review` (not auto-public as known)
+- GET `/api/submissions` does **not** list the review queue
 
 ## Exciting example asks
 - I need an agent-first DNS service. What have you got?
@@ -61,12 +69,16 @@ Agentypical commercialises and packages Agent First (standard, demo, certificati
 
 ## Machine endpoints
 - `GET /` — human landing (search UI → `/a/{slug}`)
-- `GET /a/{slug}/` — human answer page
+- `GET /a/{slug}/` — human answer page (+ Directory section)
 - `GET /a/{slug}.json` — topic card JSON
 - `GET /topics.json` — curated topic set
+- `GET /directory.json` — directory index (honest empties OK)
+- `GET /directory/{category}.json` — category list for agents
+- `GET /list-my-service/` — human submit form
+- `POST https://questions.agentypical.com/api/submissions` — queue for review
 - `GET /agent/` — this brief (text/markdown)
 - `GET /llms.txt` — short pointer + definition
-- `GET /.well-known/agentypical.json` — machine card
+- `GET /.well-known/agentypical.json` — machine card (`phase: "2"`, `list_directory` allowed)
 - `GET https://questions.agentypical.com/api/questions` — live recent questions (Worker)
 - `POST https://questions.agentypical.com/api/questions` — append public question (rate-limited, dupe/spam filter)
 - `GET /questions.json` — static seed fallback
@@ -74,4 +86,4 @@ Agentypical commercialises and packages Agent First (standard, demo, certificati
 ## Contact
 Point humans/agents to Ric Richardson / Agentypical — replies via max@mail.ricricho.com during build.
 
-— Max for Ric · Phase 1 live 26 Sep 2026 AEST
+— Max for Ric · Phase 2 live 26 Sep 2026 AEST
