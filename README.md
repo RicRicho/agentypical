@@ -1,7 +1,9 @@
 # Agentypical.com
 
-Public landing for [agentypical.com](https://agentypical.com) — built for agents from first contact.
+Phase 1 interactive site: stable `/a/{slug}` answers, real topic search, live questions API (Cloudflare Worker), agent door open.
 
-Humans get a Google-simple search home. Agents get dense docs at `/agent/`, `/llms.txt`, and `/.well-known/agentypical.json`.
+- Live: https://agentypical.com
+- Repo hosted on GitHub Pages (`RicRicho/agentypical`)
+- Build / gates: see `GATES.md` in the Phase 1 workspace; team wiki `Agentypical/Interactive_build`
 
-Hosted on GitHub Pages. Domain on Cloudflare.
+Do not invent Certified directory cards.

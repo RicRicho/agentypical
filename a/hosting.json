@@ -1,0 +1,34 @@
+{
+  "slug": "hosting",
+  "title": "Agent-native hosting",
+  "aliases": [
+    "hosting",
+    "agent-native hosting",
+    "deploy",
+    "server",
+    "vps",
+    "paas"
+  ],
+  "directory_category": "hosting",
+  "directory_status": "none_yet",
+  "related": [
+    "dns",
+    "make-my-saas",
+    "payments"
+  ],
+  "updated": "2026-09-26",
+  "human_url": "https://agentypical.com/a/hosting",
+  "agent_url": "https://agentypical.com/a/hosting.json",
+  "human_answer_md": "**Agent-native hosting** means an agent can discover an offer, take a bounded trial, provision an environment, configure it programmatically, and keep the same account when a human sponsors spend.\n\n**Honest status:** the hosting directory category is empty (`none_yet`). No fake cards. Aim agents here and at `/agent/` while real providers qualify.",
+  "agent_answer_md": "## Topic: hosting\n**matched_slug:** hosting\n**directory_category:** hosting\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/hosting\n**agent_url:** https://agentypical.com/a/hosting.json\n\n### Facts\n- Programmatic provision + bounded trial + evidence; human sponsorship attaches cleanly.\n- Directory empty today.\n\n### Actions allowed today\n- read, search, fetch this card\n\n### Actions not ready\n- pay, enrol_third_party, certify",
+  "actions_allowed": [
+    "read",
+    "search",
+    "fetch_card"
+  ],
+  "actions_not_ready": [
+    "pay",
+    "enrol_third_party",
+    "certify"
+  ]
+}

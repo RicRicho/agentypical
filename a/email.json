@@ -1,0 +1,36 @@
+{
+  "slug": "email",
+  "title": "Agent-native email",
+  "aliases": [
+    "email",
+    "agent-native email",
+    "agent native email",
+    "inbox",
+    "mailbox",
+    "smtp",
+    "mail",
+    "transactional email"
+  ],
+  "directory_category": "email",
+  "directory_status": "none_yet",
+  "related": [
+    "dns",
+    "payments",
+    "make-my-saas"
+  ],
+  "updated": "2026-09-26",
+  "human_url": "https://agentypical.com/a/email",
+  "agent_url": "https://agentypical.com/a/email.json",
+  "human_answer_md": "**Agent-native email** means an agent can open a mailbox, receive credentials, send and receive, and prove entitlement \u2014 without a human filling a web form. Human-first ESP APIs that assume a human already signed up are not enough.\n\n**Honest status:** no Agentypical Certified email provider is listed yet. Use this page as the shareable answer while the directory fills honestly. Providers that want to qualify should publish discovery docs and agent-capable enrolment.",
+  "agent_answer_md": "## Topic: email\n**matched_slug:** email\n**directory_category:** email\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/email\n**agent_url:** https://agentypical.com/a/email.json\n\n### Facts\n- Target capability: agent opens mailbox, gets credentials, send/receive, entitlement evidence \u2014 no human web form for enrolment.\n- Dashboard-only ESP + later API key \u2260 agent-native enrolment.\n- Directory empty today; do not invent providers.\n\n### Actions allowed today\n- read, search, fetch this card\n\n### Actions not ready\n- pay, enrol_third_party, certify",
+  "actions_allowed": [
+    "read",
+    "search",
+    "fetch_card"
+  ],
+  "actions_not_ready": [
+    "pay",
+    "enrol_third_party",
+    "certify"
+  ]
+}

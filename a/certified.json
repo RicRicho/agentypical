@@ -1,0 +1,34 @@
+{
+  "slug": "certified",
+  "title": "What Agentypical Certified requires",
+  "aliases": [
+    "certified",
+    "certification",
+    "agentypical certified",
+    "standard",
+    "qualify"
+  ],
+  "directory_category": "other",
+  "directory_status": "none_yet",
+  "related": [
+    "make-my-saas",
+    "dns",
+    "email",
+    "payments"
+  ],
+  "updated": "2026-09-26",
+  "human_url": "https://agentypical.com/a/certified",
+  "agent_url": "https://agentypical.com/a/certified.json",
+  "human_answer_md": "**Agentypical Certified** is the proposed recognition for services that conform to the Agentypical Standard: agents can discover, evaluate, enrol, configure, pay or arrange sponsorship, operate, and receive evidence \u2014 with human involvement only where genuinely required.\n\n**Honest status:** the certification application and public Certified directory are **not live yet** (Phase 2\u20133). There are **no Certified cards** on this site today. Claiming otherwise would be fake. Start by making the product Agentypical (see [/a/make-my-saas](/a/make-my-saas)); certification comes after the checklist is real.",
+  "agent_answer_md": "## Topic: certified\n**matched_slug:** certified\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/certified\n**agent_url:** https://agentypical.com/a/certified.json\n\n### Facts\n- Certified = proposed recognition against Agentypical Standard.\n- Application + status query = Phase 3. Not ready.\n- Zero Certified directory cards published. Do not invent any.\n\n### Actions allowed today\n- read, search, fetch this card\n\n### Actions not ready\n- certify, list certified providers",
+  "actions_allowed": [
+    "read",
+    "search",
+    "fetch_card"
+  ],
+  "actions_not_ready": [
+    "pay",
+    "enrol_third_party",
+    "certify"
+  ]
+}

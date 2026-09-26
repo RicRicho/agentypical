@@ -13,8 +13,33 @@
     "human": "/",
     "agent_brief": "/agent/",
     "llms": "/llms.txt",
-    "questions": "/questions.json"
+    "topics": "/topics.json",
+    "answers": "/a/{slug}",
+    "answer_json": "/a/{slug}.json",
+    "questions": "https://questions.agentypical.com/api/questions",
+    "questions_fallback": "/questions.json"
   },
+  "seed_slugs": [
+    "dns",
+    "email",
+    "payments",
+    "hosting",
+    "sms",
+    "make-my-saas",
+    "certified"
+  ],
+  "actions_allowed": [
+    "read",
+    "search",
+    "fetch_card"
+  ],
+  "actions_not_ready": [
+    "pay",
+    "enrol_third_party",
+    "certify",
+    "list_directory"
+  ],
   "status": "live",
+  "phase": "1",
   "updated": "2026-09-26"
 }

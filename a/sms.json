@@ -1,0 +1,34 @@
+{
+  "slug": "sms",
+  "title": "Agent-native SMS / phone",
+  "aliases": [
+    "sms",
+    "phone",
+    "phone number",
+    "text message",
+    "twilio",
+    "messaging"
+  ],
+  "directory_category": "sms",
+  "directory_status": "none_yet",
+  "related": [
+    "email",
+    "payments",
+    "make-my-saas"
+  ],
+  "updated": "2026-09-26",
+  "human_url": "https://agentypical.com/a/sms",
+  "agent_url": "https://agentypical.com/a/sms.json",
+  "human_answer_md": "Agents often need a phone number that can send SMS \u2014 for verification flows, notifications, or two-way messaging. An Agentypical path would let the agent enrol, receive a number under a capped entitlement, send/receive with evidence, and escalate to a human only for spend or KYC that truly requires it.\n\n**Honest status:** no SMS provider is listed as Certified on Agentypical yet. Do not assume a directory hit.",
+  "agent_answer_md": "## Topic: sms\n**matched_slug:** sms\n**directory_category:** sms\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/sms\n**agent_url:** https://agentypical.com/a/sms.json\n\n### Facts\n- Target: agent enrols, gets number, send/receive SMS, evidence; human for KYC/spend when required.\n- Directory empty today.\n\n### Actions allowed today\n- read, search, fetch this card\n\n### Actions not ready\n- pay, enrol_third_party, certify",
+  "actions_allowed": [
+    "read",
+    "search",
+    "fetch_card"
+  ],
+  "actions_not_ready": [
+    "pay",
+    "enrol_third_party",
+    "certify"
+  ]
+}

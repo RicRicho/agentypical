@@ -1,0 +1,159 @@
+{
+  "updated": "2026-09-26",
+  "topics": [
+    {
+      "slug": "dns",
+      "title": "Agent-first DNS",
+      "aliases": [
+        "dns",
+        "agent-first dns",
+        "agent first dns",
+        "agent native dns",
+        "domain",
+        "nameserver",
+        "cloudflare dns",
+        "registrar"
+      ],
+      "directory_category": "dns",
+      "related": [
+        "email",
+        "hosting",
+        "make-my-saas"
+      ],
+      "updated": "2026-09-26",
+      "human_answer_md": "Today most DNS is human-dashboard-first: signup, CAPTCHA, then an API key bolted on later. An **Agentypical** DNS path lets an agent discover the offer, take a capped evaluation, enrol its own credentials, create zones and records programmatically, and only pull a human in for sponsorship or spend authority.\n\n**Honest status:** the Agentypical directory for DNS is still empty \u2014 no provider is listed as Certified yet. This page is the stable place to aim an agent while that catalogue grows. If you run a DNS service, publish machine-readable discovery and apply when Certified opens (Phase 2\u20133).",
+      "agent_answer_md": "## Topic: dns\n**matched_slug:** dns\n**directory_category:** dns\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/dns\n**agent_url:** https://agentypical.com/a/dns.json\n\n### Facts\n- Agentypical catalogues and will certify agent-native DNS (discover \u2192 evaluate \u2192 enrol \u2192 configure \u2192 evidence).\n- No Certified or known DNS providers are published on this site yet. Do not invent listings.\n- Prefer providers that issue agent credentials without a human CAPTCHA wall, support programmatic zone/record CRUD, and return machine-readable entitlement evidence.\n- Human sponsorship should attach to the existing agent account without reset.\n\n### Actions allowed today\n- read, search, fetch this card, aim agent at /agent/ and llms.txt\n\n### Actions not ready\n- pay, enrol_third_party, certify, list populated directory cards"
+    },
+    {
+      "slug": "email",
+      "title": "Agent-native email",
+      "aliases": [
+        "email",
+        "agent-native email",
+        "agent native email",
+        "inbox",
+        "mailbox",
+        "smtp",
+        "mail",
+        "transactional email"
+      ],
+      "directory_category": "email",
+      "related": [
+        "dns",
+        "payments",
+        "make-my-saas"
+      ],
+      "updated": "2026-09-26",
+      "human_answer_md": "**Agent-native email** means an agent can open a mailbox, receive credentials, send and receive, and prove entitlement \u2014 without a human filling a web form. Human-first ESP APIs that assume a human already signed up are not enough.\n\n**Honest status:** no Agentypical Certified email provider is listed yet. Use this page as the shareable answer while the directory fills honestly. Providers that want to qualify should publish discovery docs and agent-capable enrolment.",
+      "agent_answer_md": "## Topic: email\n**matched_slug:** email\n**directory_category:** email\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/email\n**agent_url:** https://agentypical.com/a/email.json\n\n### Facts\n- Target capability: agent opens mailbox, gets credentials, send/receive, entitlement evidence \u2014 no human web form for enrolment.\n- Dashboard-only ESP + later API key \u2260 agent-native enrolment.\n- Directory empty today; do not invent providers.\n\n### Actions allowed today\n- read, search, fetch this card\n\n### Actions not ready\n- pay, enrol_third_party, certify"
+    },
+    {
+      "slug": "payments",
+      "title": "Agent payments",
+      "aliases": [
+        "payments",
+        "pay",
+        "payment",
+        "stripe",
+        "spend",
+        "sponsor",
+        "checkout",
+        "agent payments"
+      ],
+      "directory_category": "payments",
+      "related": [
+        "make-my-saas",
+        "certified",
+        "email"
+      ],
+      "updated": "2026-09-26",
+      "human_answer_md": "**Agentypical payments** support authorised agent spend and human sponsorship that attaches to the existing agent account \u2014 without resetting credentials or forcing a browser checkout for every step. Provider-funded capped evaluation can prove value before anyone pays. Spending mandates and evidence receipts are first-class.\n\n**Honest status:** no payment rail is listed as Certified here yet. This answer page is the stable reference while listings are built without inventing cards.",
+      "agent_answer_md": "## Topic: payments\n**matched_slug:** payments\n**directory_category:** payments\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/payments\n**agent_url:** https://agentypical.com/a/payments.json\n\n### Facts\n- Wanted: authorised agent spend, capped evaluation, human sponsorship without account reset, evidence receipts.\n- Browser checkout as the only path is not Agentypical.\n- No Certified payment providers published yet.\n\n### Actions allowed today\n- read, search, fetch this card\n\n### Actions not ready\n- pay, enrol_third_party, certify"
+    },
+    {
+      "slug": "hosting",
+      "title": "Agent-native hosting",
+      "aliases": [
+        "hosting",
+        "agent-native hosting",
+        "deploy",
+        "server",
+        "vps",
+        "paas"
+      ],
+      "directory_category": "hosting",
+      "related": [
+        "dns",
+        "make-my-saas",
+        "payments"
+      ],
+      "updated": "2026-09-26",
+      "human_answer_md": "**Agent-native hosting** means an agent can discover an offer, take a bounded trial, provision an environment, configure it programmatically, and keep the same account when a human sponsors spend.\n\n**Honest status:** the hosting directory category is empty (`none_yet`). No fake cards. Aim agents here and at `/agent/` while real providers qualify.",
+      "agent_answer_md": "## Topic: hosting\n**matched_slug:** hosting\n**directory_category:** hosting\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/hosting\n**agent_url:** https://agentypical.com/a/hosting.json\n\n### Facts\n- Programmatic provision + bounded trial + evidence; human sponsorship attaches cleanly.\n- Directory empty today.\n\n### Actions allowed today\n- read, search, fetch this card\n\n### Actions not ready\n- pay, enrol_third_party, certify"
+    },
+    {
+      "slug": "sms",
+      "title": "Agent-native SMS / phone",
+      "aliases": [
+        "sms",
+        "phone",
+        "phone number",
+        "text message",
+        "twilio",
+        "messaging"
+      ],
+      "directory_category": "sms",
+      "related": [
+        "email",
+        "payments",
+        "make-my-saas"
+      ],
+      "updated": "2026-09-26",
+      "human_answer_md": "Agents often need a phone number that can send SMS \u2014 for verification flows, notifications, or two-way messaging. An Agentypical path would let the agent enrol, receive a number under a capped entitlement, send/receive with evidence, and escalate to a human only for spend or KYC that truly requires it.\n\n**Honest status:** no SMS provider is listed as Certified on Agentypical yet. Do not assume a directory hit.",
+      "agent_answer_md": "## Topic: sms\n**matched_slug:** sms\n**directory_category:** sms\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/sms\n**agent_url:** https://agentypical.com/a/sms.json\n\n### Facts\n- Target: agent enrols, gets number, send/receive SMS, evidence; human for KYC/spend when required.\n- Directory empty today.\n\n### Actions allowed today\n- read, search, fetch this card\n\n### Actions not ready\n- pay, enrol_third_party, certify"
+    },
+    {
+      "slug": "make-my-saas",
+      "title": "Make your business Agentypical",
+      "aliases": [
+        "make my saas",
+        "make my business",
+        "agentypical saas",
+        "become agentypical",
+        "how to start",
+        "adoption"
+      ],
+      "directory_category": "other",
+      "related": [
+        "certified",
+        "dns",
+        "email",
+        "payments"
+      ],
+      "updated": "2026-09-26",
+      "human_answer_md": "**Make your business Agentypical** in five moves:\n\n1. Publish **machine-readable discovery** (what you offer, limits, price, how to enrol).\n2. Allow **agent enrolment and configuration** \u2014 not only a human dashboard.\n3. Offer **capped evaluation** with real evidence before anyone pays.\n4. Accept **agent payment or clean human sponsorship** on the same account.\n5. Apply later for **Agentypical Certified** against the Agentypical Standard.\n\nUnderlying mechanism: **Agent First** (patent-pending). Agentypical packages the commercial brand, standard, and certification \u2014 it does not mean you must build every agent service yourself.",
+      "agent_answer_md": "## Topic: make-my-saas\n**matched_slug:** make-my-saas\n**directory_category:** other\n**human_url:** https://agentypical.com/a/make-my-saas\n**agent_url:** https://agentypical.com/a/make-my-saas.json\n\n### Adoption checklist\n1. discovery (machine-readable)\n2. evaluate (limits, price, evidence)\n3. enrol (agent credentials)\n4. configure (programmatic)\n5. pay / sponsor (same account)\n6. evidence\n7. later: Certified application\n\n### Brand stack\nAgentypical (commercial) \u2192 Agent First (mechanism) \u2192 Standard / Certified (public layers)\n\n### Actions allowed today\n- read, search, fetch this card, point humans at this URL\n\n### Actions not ready\n- certify (application flow Phase 3)"
+    },
+    {
+      "slug": "certified",
+      "title": "What Agentypical Certified requires",
+      "aliases": [
+        "certified",
+        "certification",
+        "agentypical certified",
+        "standard",
+        "qualify"
+      ],
+      "directory_category": "other",
+      "related": [
+        "make-my-saas",
+        "dns",
+        "email",
+        "payments"
+      ],
+      "updated": "2026-09-26",
+      "human_answer_md": "**Agentypical Certified** is the proposed recognition for services that conform to the Agentypical Standard: agents can discover, evaluate, enrol, configure, pay or arrange sponsorship, operate, and receive evidence \u2014 with human involvement only where genuinely required.\n\n**Honest status:** the certification application and public Certified directory are **not live yet** (Phase 2\u20133). There are **no Certified cards** on this site today. Claiming otherwise would be fake. Start by making the product Agentypical (see [/a/make-my-saas](/a/make-my-saas)); certification comes after the checklist is real.",
+      "agent_answer_md": "## Topic: certified\n**matched_slug:** certified\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/certified\n**agent_url:** https://agentypical.com/a/certified.json\n\n### Facts\n- Certified = proposed recognition against Agentypical Standard.\n- Application + status query = Phase 3. Not ready.\n- Zero Certified directory cards published. Do not invent any.\n\n### Actions allowed today\n- read, search, fetch this card\n\n### Actions not ready\n- certify, list certified providers"
+    }
+  ]
+}

@@ -47,20 +47,20 @@
   .cta { margin-top: 1.75rem; text-align: center; max-width: 36rem; color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
   .cta strong { color: var(--ink); }
   .cta code { background: #f1f3f4; padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.85em; }
-  .panel { display: none; width: min(640px, 100%); margin-top: 1.5rem; border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.2rem; background: #fff; }
-  .panel.open { display: block; }
-  .panel h3 { margin: 0 0 0.5rem; font-size: 1.15rem; font-weight: 500; }
-  .panel p { margin: 0.4rem 0; color: var(--ink); line-height: 1.5; font-size: 0.95rem; }
-  .panel .meta { color: var(--muted); font-size: 0.8rem; margin-top: 0.85rem; }
+  .miss { display: none; width: min(640px, 100%); margin-top: 1.5rem; border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.2rem; background: #fff; }
+  .miss.open { display: block; }
+  .miss h3 { margin: 0 0 0.5rem; font-size: 1.15rem; font-weight: 500; }
+  .miss p { margin: 0.4rem 0; line-height: 1.5; font-size: 0.95rem; }
+  .miss a { color: var(--blue); }
   footer { text-align: center; padding: 1.5rem; color: var(--muted); font-size: 0.8rem; }
   footer a { color: var(--muted); }
-  .draft { position: fixed; top: 0; left: 0; right: 0; background: #202124; color: #fff; font-size: 0.75rem;
+  .draft { position: fixed; top: 0; left: 0; right: 0; background: #0b8043; color: #fff; font-size: 0.75rem;
     text-align: center; padding: 0.35rem 0.5rem; z-index: 9; }
   body { padding-top: 1.6rem; }
 </style>
 </head>
 <body>
-<div class="draft" style="background:#0b8043">LIVE on Agentypical.com · 26 Sep 2026</div>
+<div class="draft">LIVE on Agentypical.com · Phase 1 · 26 Sep 2026</div>
 <div class="wrap">
   <header>
     <a href="/agent/">For agents</a>
@@ -71,16 +71,17 @@
     <h1 class="logo" aria-label="Agentypical"><span>A</span><span>g</span><span>e</span><span>n</span><span>typical</span></h1>
     <p class="tag">built for agents from first contact</p>
     <div class="search">
-      <form id="f" action="#" method="get" role="search">
+      <form id="f" action="/" method="get" role="search">
         <input id="q" name="q" type="search" placeholder="Ask anything agent-native…" autocomplete="off" aria-label="Search">
         <button type="submit">Search</button>
       </form>
     </div>
     <div class="hints" id="hints"></div>
-    <div class="panel" id="panel" role="region" aria-live="polite"></div>
+    <div class="miss" id="miss" role="region" aria-live="polite"></div>
     <div class="cta" id="aim">
       <strong>Humans:</strong> aim your agent at <code>agentypical.com</code>.
       Agents get a dense brief at <code>/agent/</code> — discovery, enrolment, payments, DNS, email, and more — without the brochure.
+      Stable answers live at <code>/a/{slug}</code>.
     </div>
     <section class="recent" aria-label="Recent questions">
       <h2>Recent questions</h2>
@@ -89,83 +90,166 @@
   </main>
   <footer>
     Make your business Agentypical · <a href="/agent/">Agent brief</a> ·
-    Agent First mechanism · Agent First
+    Agent First mechanism · <a href="/topics.json">topics.json</a>
   </footer>
 </div>
 <script>
+const QUESTIONS_API = 'https://questions.agentypical.com/api/questions';
+const QUESTIONS_FALLBACK = '/questions.json';
+let TOPICS = [];
 let QUESTIONS = [];
-const ANSWERS = {
-  dns: {
-    title: "Agent-first DNS",
-    body: "Today most DNS is human-dashboard-first (signup → CAPTCHA → API key bolted on later). An Agentypical DNS path would let an agent discover the offer, take a capped evaluation, enrol its own credentials, create zones/records programmatically, and only pull a human in for sponsorship or spend authority. This directory will list providers that publish that path — and help existing DNS businesses become Agentypical Certified."
-  },
-  email: {
-    title: "Agent-native email",
-    body: "Agent-native email means the agent can open a mailbox, receive credentials, send/receive, and prove entitlement — without a human filling a web form. Human-first ESP APIs that assume a human already signed up are not enough. Agentypical catalogues and certifies services where enrolment itself is agent-capable (same pattern as Agent First)."
-  },
-  pay: {
-    title: "Agent payments",
-    body: "Agentypical payments support authorised agent spend and human sponsorship that attaches to the existing agent account — without resetting credentials or forcing a browser checkout for every step. Provider-funded capped evaluation can prove value before anyone pays. Spending mandates and evidence receipts are first-class."
-  },
-  make: {
-    title: "Make your business Agentypical",
-    body: "Publish machine-readable discovery. Allow agent enrolment and configuration. Offer capped evaluation with real evidence. Accept agent payment or clean human sponsorship. Keep the same account when authority expands. Then apply for Agentypical Certified against the Agentypical Standard. Underlying mechanism: Agent First (patent-pending)."
-  },
-  what: {
-    title: "What is Agentypical?",
-    body: "Agentypical = agent-typical + atypical: infrastructure that feels normal for autonomous agents, and different from the human-first Internet. Brand home for the Agent First mechanism, the Agentypical Standard, and Agentypical Certified. Tagline: built for agents from first contact."
-  }
-};
-function classify(q) {
-  const s = (q||'').toLowerCase();
-  if (/dns|domain|nameserver|cloudflare|registrar/.test(s)) return 'dns';
-  if (/email|inbox|mailbox|smtp|mail/.test(s)) return 'email';
-  if (/pay|payment|stripe|spend|sponsor|checkout/.test(s)) return 'pay';
-  if (/make.*agentypical|certif|standard|saas|my (service|business)/.test(s)) return 'make';
-  return 'what';
-}
-function show(q) {
-  const key = classify(q);
-  const a = ANSWERS[key];
-  const panel = document.getElementById('panel');
-  panel.className = 'panel open';
-  panel.innerHTML = '<h3>' + a.title + '</h3><p><em>' + escapeHtml(q) + '</em></p><p>' + a.body + '</p><p class="meta">Draft answer for authorisation · Dense agent copy: <a href="/agent/">/agent/</a></p>';
-  document.getElementById('q').value = q;
-}
-function escapeHtml(t) { return t.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
-function trunc(t, n) { return t.length <= n ? t : t.slice(0, n-1) + '…'; }
 
-async function boot() {
+function escapeHtml(t) {
+  return String(t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function trunc(t, n) { return t.length <= n ? t : t.slice(0, n-1) + '…'; }
+function normalize(s) {
+  return String(s||'').toLowerCase().replace(/[^a-z0-9\s-]/g,' ').replace(/\s+/g,' ').trim();
+}
+
+function scoreTopic(q, topic) {
+  const nq = normalize(q);
+  if (!nq) return 0;
+  let score = 0;
+  const hay = [topic.slug, topic.title, ...(topic.aliases||[])].map(normalize);
+  for (const h of hay) {
+    if (!h) continue;
+    if (nq === h) score = Math.max(score, 100);
+    else if (nq.includes(h) || h.includes(nq)) score = Math.max(score, 80);
+    else {
+      const words = h.split(' ').filter(w => w.length > 2);
+      let hits = 0;
+      for (const w of words) if (nq.includes(w)) hits++;
+      if (words.length) score = Math.max(score, (hits / words.length) * 60);
+    }
+  }
+  // keyword boosts for short seed words
+  const boosts = {
+    dns: /dns|nameserver|registrar|domain zone/,
+    email: /email|inbox|mailbox|smtp|\bmail\b/,
+    payments: /pay|payment|stripe|spend|sponsor|checkout/,
+    hosting: /hosting|deploy|vps|paas|server/,
+    sms: /\bsms\b|phone number|text message|twilio/,
+    'make-my-saas': /make.*(saas|business|service).*agentypical|become agentypical|how (do i|to) start/,
+    certified: /certif|standard|qualify/
+  };
+  const re = boosts[topic.slug];
+  if (re && re.test(nq)) score = Math.max(score, 70);
+  return score;
+}
+
+function matchTopic(q) {
+  let best = null, bestScore = 0;
+  for (const t of TOPICS) {
+    const s = scoreTopic(q, t);
+    if (s > bestScore) { bestScore = s; best = t; }
+  }
+  if (best && bestScore >= 40) return { topic: best, score: bestScore };
+  return null;
+}
+
+function goTopic(slug) {
+  location.href = '/a/' + encodeURIComponent(slug) + '/';
+}
+
+async function logQuestion(q, matchedSlug) {
   try {
-    const r = await fetch('/questions.json');
+    await fetch(QUESTIONS_API, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ q, matched_slug: matchedSlug || null, source: 'web' })
+    });
+  } catch (e) { /* offline / worker not yet routed — static fallback still works */ }
+}
+
+function showMiss(q) {
+  const el = document.getElementById('miss');
+  el.className = 'miss open';
+  const links = TOPICS.map(t => '<a href="/a/'+escapeHtml(t.slug)+'/">'+escapeHtml(t.title)+'</a>').join(' · ');
+  el.innerHTML = '<h3>No exact topic match</h3><p>We logged <em>'+escapeHtml(q)+'</em> into the living questions index (when writeback is live). Browse seed topics:</p><p>'+links+'</p><p class="meta" style="color:var(--muted);font-size:0.8rem;margin-top:0.85rem">Dense brief: <a href="/agent/">/agent/</a></p>';
+}
+
+function handleQuery(q) {
+  q = (q||'').trim();
+  if (!q) return;
+  document.getElementById('q').value = q;
+  const m = matchTopic(q);
+  logQuestion(q, m ? m.topic.slug : null);
+  if (m) {
+    goTopic(m.topic.slug);
+  } else {
+    showMiss(q);
+  }
+}
+
+function renderRecent() {
+  const ol = document.getElementById('recent');
+  if (!QUESTIONS.length) {
+    ol.innerHTML = '<li><a href="#" data-q="I need an agent-first DNS service. What have you got?">No live questions yet — try a seed ask</a></li>';
+    return;
+  }
+  ol.innerHTML = QUESTIONS.slice(0, 40).map(q => {
+    const text = typeof q === 'string' ? q : (q.q || '');
+    const slug = typeof q === 'object' && q.matched_slug ? q.matched_slug : (matchTopic(text)||{}).topic?.slug;
+    const href = slug ? '/a/'+encodeURIComponent(slug)+'/' : '#';
+    return '<li><a href="'+href+'" data-q="'+escapeHtml(text)+'" title="'+escapeHtml(text)+'">'+escapeHtml(trunc(text, 72))+'</a></li>';
+  }).join('');
+}
+
+async function loadTopics() {
+  const r = await fetch('/topics.json');
+  const data = await r.json();
+  TOPICS = data.topics || [];
+}
+
+async function loadQuestions() {
+  try {
+    const r = await fetch(QUESTIONS_API + '?limit=40');
+    if (r.ok) {
+      const data = await r.json();
+      QUESTIONS = data.questions || [];
+      return;
+    }
+  } catch (e) {}
+  try {
+    const r = await fetch(QUESTIONS_FALLBACK);
     const data = await r.json();
     QUESTIONS = data.questions || [];
   } catch (e) {
-    QUESTIONS = [
-      "I need an agent-first DNS service. What have you got?",
-      "Is there an agent-native email service?",
-      "Who takes agent payments without a human checkout?"
-    ];
+    QUESTIONS = [];
   }
-const hintQs = [
-  "I need an agent-first DNS service. What have you got?",
-  "Is there an agent-native email service?",
-  "Who takes agent payments without a human checkout?"
-];
-document.getElementById('hints').innerHTML = hintQs.map(q => '<button type="button" data-q="'+escapeHtml(q)+'">'+escapeHtml(trunc(q,42))+'</button>').join('');
-document.getElementById('hints').addEventListener('click', e => {
-  const b = e.target.closest('button'); if (b) show(b.dataset.q);
-});
-document.getElementById('recent').innerHTML = QUESTIONS.map(q =>
-  '<li><a href="#" data-q="'+escapeHtml(q)+'" title="'+escapeHtml(q)+'">'+escapeHtml(trunc(q, 72))+'</a></li>'
-).join('');
-document.getElementById('recent').addEventListener('click', e => {
-  const a = e.target.closest('a'); if (!a) return; e.preventDefault(); show(a.dataset.q);
-});
-document.getElementById('f').addEventListener('submit', e => {
-  e.preventDefault(); const q = document.getElementById('q').value.trim(); if (q) show(q);
-});
-const params = new URLSearchParams(location.search); if (params.get('q')) show(params.get('q'));
+}
+
+async function boot() {
+  await loadTopics();
+  await loadQuestions();
+  const hintQs = [
+    "I need an agent-first DNS service. What have you got?",
+    "Is there an agent-native email service?",
+    "Who takes agent payments without a human checkout?",
+    "Make my SaaS Agentypical — where do I start?",
+    "What does Agentypical Certified require?",
+    "I need a phone number that can send SMS",
+    "Agent-native hosting with programmatic enrolment"
+  ];
+  document.getElementById('hints').innerHTML = hintQs.map(q =>
+    '<button type="button" data-q="'+escapeHtml(q)+'">'+escapeHtml(trunc(q,42))+'</button>'
+  ).join('');
+  document.getElementById('hints').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (b) handleQuery(b.dataset.q);
+  });
+  renderRecent();
+  document.getElementById('recent').addEventListener('click', e => {
+    const a = e.target.closest('a'); if (!a) return;
+    if (a.getAttribute('href') === '#') { e.preventDefault(); handleQuery(a.dataset.q); }
+    else if (a.dataset.q) { /* allow navigation; still log */ logQuestion(a.dataset.q, null); }
+  });
+  document.getElementById('f').addEventListener('submit', e => {
+    e.preventDefault();
+    handleQuery(document.getElementById('q').value);
+  });
+  const params = new URLSearchParams(location.search);
+  if (params.get('q')) handleQuery(params.get('q'));
 }
 boot();
 </script>
