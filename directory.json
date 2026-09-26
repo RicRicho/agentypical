@@ -1,17 +1,32 @@
 {
   "updated": "2026-09-26",
-  "phase": 2,
-  "note": "Public known/evaluating/certified cards are reviewed before publish. Empty arrays and status none_yet are intentional — do not invent listings.",
+  "phase": 3,
+  "format_version": "1",
+  "listing_schema": "/specs/listing.v1.json",
+  "certified_rules": "/specs/certified.v1.json",
+  "note": "Phase 3: three real seed cards (known|evaluating). Zero Certified. Identity category added (honest empty). Submissions still review-queue only.",
   "statuses": ["known", "evaluating", "certified", "none_yet"],
   "submit": "https://agentypical.com/list-my-service/",
   "submissions_api": "https://questions.agentypical.com/api/submissions",
+  "ask_api": "https://questions.agentypical.com/api/ask",
+  "list_api": "https://questions.agentypical.com/api/list",
   "categories": {
     "dns": {
       "id": "dns",
       "title": "DNS",
       "description": "Agent-native DNS / registrar / nameserver providers",
-      "status": "none_yet",
-      "cards": [],
+      "status": "known",
+      "cards": [{
+        "id": "cloudflare-dns",
+        "name": "Cloudflare DNS / API",
+        "category": "dns",
+        "discovery_url": "https://developers.cloudflare.com/api/",
+        "agent_enrolment": false,
+        "status": "known",
+        "notes": "Widely known Zones + DNS Records API. Agents can manage records with an API token; account creation and token issuance are still human-first (dashboard / CAPTCHA). Listed as known, not Certified.",
+        "website": "https://www.cloudflare.com/",
+        "updated": "2026-09-26"
+      }],
       "json": "/directory/dns.json",
       "answer": "/a/dns/"
     },
@@ -19,8 +34,18 @@
       "id": "email",
       "title": "Email",
       "description": "Agent-native email / mailbox providers",
-      "status": "none_yet",
-      "cards": [],
+      "status": "known",
+      "cards": [{
+        "id": "agentmail",
+        "name": "AgentMail",
+        "category": "email",
+        "discovery_url": "https://www.agentmail.to/docs/introduction",
+        "agent_enrolment": true,
+        "status": "known",
+        "notes": "API-first email for agents: programmatic inboxes, send/receive, webhooks. Console signup still exists for the org/API key; once keyed, inbox CRUD is agent-capable. Listed as known, not Certified.",
+        "website": "https://www.agentmail.to/",
+        "updated": "2026-09-26"
+      }],
       "json": "/directory/email.json",
       "answer": "/a/email/"
     },
@@ -28,8 +53,18 @@
       "id": "payments",
       "title": "Payments",
       "description": "Agent spend and sponsorship payment rails",
-      "status": "none_yet",
-      "cards": [],
+      "status": "evaluating",
+      "cards": [{
+        "id": "stripe-api",
+        "name": "Stripe API",
+        "category": "payments",
+        "discovery_url": "https://docs.stripe.com/api",
+        "agent_enrolment": false,
+        "status": "evaluating",
+        "notes": "Mature payments API widely used by agents after a human creates the Stripe account. Browser Checkout and human KYC remain primary paths — promising rails, not fully Agentypical enrolment. Evaluating, not Certified.",
+        "website": "https://stripe.com/",
+        "updated": "2026-09-26"
+      }],
       "json": "/directory/payments.json",
       "answer": "/a/payments/"
     },
@@ -50,6 +85,15 @@
       "cards": [],
       "json": "/directory/sms.json",
       "answer": "/a/sms/"
+    },
+    "identity": {
+      "id": "identity",
+      "title": "Identity / login",
+      "description": "Agent-native identity, login, credentials, and delegation providers (Ric home turf)",
+      "status": "none_yet",
+      "cards": [],
+      "json": "/directory/identity.json",
+      "answer": "/a/identity/"
     }
   }
 }
