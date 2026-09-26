@@ -1,0 +1,55 @@
+{
+  "updated": "2026-09-26",
+  "phase": 2,
+  "note": "Public known/evaluating/certified cards are reviewed before publish. Empty arrays and status none_yet are intentional — do not invent listings.",
+  "statuses": ["known", "evaluating", "certified", "none_yet"],
+  "submit": "https://agentypical.com/list-my-service/",
+  "submissions_api": "https://questions.agentypical.com/api/submissions",
+  "categories": {
+    "dns": {
+      "id": "dns",
+      "title": "DNS",
+      "description": "Agent-native DNS / registrar / nameserver providers",
+      "status": "none_yet",
+      "cards": [],
+      "json": "/directory/dns.json",
+      "answer": "/a/dns/"
+    },
+    "email": {
+      "id": "email",
+      "title": "Email",
+      "description": "Agent-native email / mailbox providers",
+      "status": "none_yet",
+      "cards": [],
+      "json": "/directory/email.json",
+      "answer": "/a/email/"
+    },
+    "payments": {
+      "id": "payments",
+      "title": "Payments",
+      "description": "Agent spend and sponsorship payment rails",
+      "status": "none_yet",
+      "cards": [],
+      "json": "/directory/payments.json",
+      "answer": "/a/payments/"
+    },
+    "hosting": {
+      "id": "hosting",
+      "title": "Hosting",
+      "description": "Agent-native hosting / deploy / PaaS",
+      "status": "none_yet",
+      "cards": [],
+      "json": "/directory/hosting.json",
+      "answer": "/a/hosting/"
+    },
+    "sms": {
+      "id": "sms",
+      "title": "SMS / phone",
+      "description": "Agent-native SMS and phone-number providers",
+      "status": "none_yet",
+      "cards": [],
+      "json": "/directory/sms.json",
+      "answer": "/a/sms/"
+    }
+  }
+}

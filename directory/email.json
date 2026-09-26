@@ -1,0 +1,12 @@
+{
+  "updated": "2026-09-26",
+  "phase": 2,
+  "category": "email",
+  "title": "Email",
+  "description": "Agent-native email / mailbox providers",
+  "status": "none_yet",
+  "cards": [],
+  "index": "/directory.json",
+  "submit": "https://agentypical.com/list-my-service/",
+  "note": "No public known/evaluating/certified cards yet. Submissions go to review queue and are not auto-published."
+}
