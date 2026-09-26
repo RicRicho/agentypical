@@ -7,15 +7,21 @@ Agentypical means: designed so an autonomous software agent can discover, evalua
 - Dense agent brief: https://agentypical.com/agent/
 - Machine card: https://agentypical.com/.well-known/agentypical.json
 - Topic index: https://agentypical.com/topics.json
-- Stable answers: https://agentypical.com/a/{slug} (dns, email, payments, hosting, sms, make-my-saas, certified)
+- Stable answers: https://agentypical.com/a/{slug} (dns, email, payments, hosting, sms, identity, make-my-saas, certified)
 - Topic JSON: https://agentypical.com/a/{slug}.json
 - Directory index: https://agentypical.com/directory.json
-- Directory by category: https://agentypical.com/directory/{category}.json (dns, email, payments, hosting, sms)
+- Directory by category: https://agentypical.com/directory/{category}.json (dns, email, payments, hosting, sms, identity)
+- Listing schema (format_version 1): https://agentypical.com/specs/listing.v1.json
+- Listing schema (human): https://agentypical.com/specs/listing/
+- Certified rules (machine): https://agentypical.com/specs/certified.v1.json
+- Certified rules (human): https://agentypical.com/specs/certified/
 - List my service (human form): https://agentypical.com/list-my-service/
 - Submit for review (API): https://questions.agentypical.com/api/submissions
+- Ask (API): https://questions.agentypical.com/api/ask?q=
+- List (API): https://questions.agentypical.com/api/list?category=
 - Recent questions (live API): https://questions.agentypical.com/api/questions
 - Recent questions (static fallback): https://agentypical.com/questions.json
 - Underlying mechanism: Agent First (patent-pending)
 
 Commercial instruction: Make your business Agentypical.
-Phase 2: directory lists are live; most categories are honestly empty (status none_yet). No fake Certified cards. Submissions go to review — not auto-published as known.
+Phase 3: three real seed listings (known|evaluating only). Zero Certified cards. Identity category added (honest empty). Listing schema + Certified rules published. Submissions still review-queue — not auto-published.

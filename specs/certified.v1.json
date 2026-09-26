@@ -1,0 +1,43 @@
+{
+  "format_version": "1",
+  "schema_version": "1",
+  "$id": "https://agentypical.com/specs/certified.v1.json",
+  "title": "Agentypical Certified \u2014 plain rules",
+  "updated": "2026-09-26",
+  "badge": "Agentypical Certified",
+  "meaning": "The service has been reviewed against the Agentypical Standard and agents can discover, evaluate, enrol, configure, pay or arrange sponsorship, operate, and receive evidence \u2014 with human involvement only where genuinely required.",
+  "rules": [
+    "Certified is earned by review against the Agentypical Standard \u2014 never self-asserted on this site.",
+    "Empty categories and zero Certified cards are honest and preferred over fake badges.",
+    "Inventing or displaying a Certified badge without a reviewed Certified card is forbidden.",
+    "Public directory seeds may use status known or evaluating only until certification is live and earned.",
+    "Submissions via list-my-service go to a review queue and are not auto-published as known, evaluating, or Certified.",
+    "Certification application and status-query APIs are not ready (actions_not_ready includes certify)."
+  ],
+  "forbidden": [
+    "Fake Certified cards",
+    "Marketplace completeness theatre",
+    "Auto-publishing submissions as Certified"
+  ],
+  "statuses_allowed_for_uncertified_seeds": [
+    "known",
+    "evaluating"
+  ],
+  "human_page": "https://agentypical.com/specs/certified/",
+  "answer_page": "https://agentypical.com/a/certified/",
+  "listing_schema": "https://agentypical.com/specs/listing.v1.json",
+  "actions_allowed": [
+    "read",
+    "search",
+    "fetch_card",
+    "list_directory",
+    "submit_for_review",
+    "ask",
+    "list"
+  ],
+  "actions_not_ready": [
+    "pay",
+    "enrol_third_party",
+    "certify"
+  ]
+}

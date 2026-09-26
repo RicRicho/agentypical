@@ -60,12 +60,13 @@
 </style>
 </head>
 <body>
-<div class="draft">LIVE on Agentypical.com · Phase 2 · 26 Sep 2026</div>
+<div class="draft">LIVE on Agentypical.com · Phase 3 · 26 Sep 2026</div>
 <div class="wrap">
   <header>
     <a href="/agent/">For agents</a>
     <a href="/list-my-service/">List my service</a>
     <a href="/directory.json">Directory</a>
+    <a href="/specs/certified/">Certified</a>
     <a href="/llms.txt">llms.txt</a>
     <a href="#aim">Aim your agent</a>
   </header>
@@ -83,7 +84,7 @@
     <div class="cta" id="aim">
       <strong>Humans:</strong> aim your agent at <code>agentypical.com</code>.
       Agents get a dense brief at <code>/agent/</code> — discovery, enrolment, payments, DNS, email, and more — without the brochure.
-      Stable answers live at <code>/a/{slug}</code>. Directory: <code>/directory.json</code> (honest empties OK). <a href="/list-my-service/">List my service</a>.
+      Stable answers live at <code>/a/{slug}</code>. Directory: <code>/directory.json</code> (Phase 3 seeds; zero Certified). Specs: <a href="/specs/listing/">listing</a> · <a href="/specs/certified/">Certified rules</a>. <a href="/list-my-service/">List my service</a>.
     </div>
     <section class="recent" aria-label="Recent questions">
       <h2>Recent questions</h2>
@@ -92,7 +93,7 @@
   </main>
   <footer>
     Make your business Agentypical · <a href="/agent/">Agent brief</a> ·
-    Agent First mechanism · <a href="/topics.json">topics.json</a> · <a href="/directory.json">directory.json</a>
+    Agent First mechanism · <a href="/topics.json">topics.json</a> · <a href="/directory.json">directory.json</a> · <a href="/specs/listing.v1.json">listing schema</a>
   </footer>
 </div>
 <script>
@@ -132,6 +133,7 @@ function scoreTopic(q, topic) {
     hosting: /hosting|deploy|vps|paas|server/,
     sms: /\bsms\b|phone number|text message|twilio/,
     'make-my-saas': /make.*(saas|business|service).*agentypical|become agentypical|how (do i|to) start/,
+    identity: /identity|login|auth|passkey|\bdid\b|verifiable credential|delegation|signin/,
     certified: /certif|standard|qualify/
   };
   const re = boosts[topic.slug];
@@ -231,7 +233,8 @@ async function boot() {
     "Make my SaaS Agentypical — where do I start?",
     "What does Agentypical Certified require?",
     "I need a phone number that can send SMS",
-    "Agent-native hosting with programmatic enrolment"
+    "Agent-native hosting with programmatic enrolment",
+    "What identity or login services work for agents?"
   ];
   document.getElementById('hints').innerHTML = hintQs.map(q =>
     '<button type="button" data-q="'+escapeHtml(q)+'">'+escapeHtml(trunc(q,42))+'</button>'

@@ -19,12 +19,18 @@
   "updated": "2026-09-26",
   "human_url": "https://agentypical.com/a/hosting",
   "agent_url": "https://agentypical.com/a/hosting.json",
-  "human_answer_md": "**Agent-native hosting** means an agent can discover an offer, take a bounded trial, provision an environment, configure it programmatically, and keep the same account when a human sponsors spend.\n\n**Honest status:** the hosting directory category is empty (`none_yet`). No fake cards. Aim agents here and at `/agent/` while real providers qualify.",
-  "agent_answer_md": "## Topic: hosting\n**matched_slug:** hosting\n**directory_category:** hosting\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/hosting\n**agent_url:** https://agentypical.com/a/hosting.json\n\n### Facts\n- Programmatic provision + bounded trial + evidence; human sponsorship attaches cleanly.\n- Directory empty today.\n\n### Actions allowed today\n- read, search, fetch this card\n\n### Actions not ready\n- pay, enrol_third_party, certify",
+  "listing_schema": "https://agentypical.com/specs/listing.v1.json",
+  "certified_rules": "https://agentypical.com/specs/certified.v1.json",
+  "human_answer_md": "**Agent-native hosting** means an agent can discover an offer, take a bounded trial, provision an environment, configure it programmatically, and keep the same account when a human sponsors spend.\n\n**Honest status:** hosting directory is empty (`none_yet`).",
+  "agent_answer_md": "## Topic: hosting\n**directory_status:** none_yet\n**directory:** https://agentypical.com/directory/hosting.json\nCards: []. Do not invent providers.\nActions allowed: read, search, fetch_card, list_directory, ask, list, submit_for_review\nActions not ready: pay, enrol_third_party, certify",
   "actions_allowed": [
     "read",
     "search",
-    "fetch_card"
+    "fetch_card",
+    "list_directory",
+    "ask",
+    "list",
+    "submit_for_review"
   ],
   "actions_not_ready": [
     "pay",

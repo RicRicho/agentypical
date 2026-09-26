@@ -1,0 +1,45 @@
+{
+  "slug": "identity",
+  "title": "Agent-native identity / login",
+  "aliases": [
+    "identity",
+    "login",
+    "auth",
+    "authentication",
+    "credentials",
+    "passkey",
+    "did",
+    "verifiable credentials",
+    "delegation",
+    "signin"
+  ],
+  "directory_category": "identity",
+  "directory_status": "none_yet",
+  "related": [
+    "email",
+    "dns",
+    "certified",
+    "make-my-saas"
+  ],
+  "updated": "2026-09-26",
+  "human_url": "https://agentypical.com/a/identity",
+  "agent_url": "https://agentypical.com/a/identity.json",
+  "listing_schema": "https://agentypical.com/specs/listing.v1.json",
+  "certified_rules": "https://agentypical.com/specs/certified.v1.json",
+  "human_answer_md": "**Identity / login** is Ric's home turf: credentials, passkeys, DIDs / verifiable credentials, and delegation so an agent can prove who it is acting for \u2014 without a human clicking through every consent screen.\n\n**Honest status:** the identity directory category exists and is empty (`none_yet`). No invented providers. See [/directory/identity.json](/directory/identity.json).",
+  "agent_answer_md": "## Topic: identity\n**matched_slug:** identity\n**directory_category:** identity\n**directory_status:** none_yet\n**directory:** https://agentypical.com/directory/identity.json\n\n### Facts\n- Category added in Phase 3 (Ric home turf).\n- Cards: [] \u2014 honest empty. Do not invent identity providers.\n- Relevant themes: agent credentials, passkeys, W3C DIDs / VCs, delegation alongside human locks.\n\n### Actions allowed today\n- read, search, fetch_card, list_directory, ask, list, submit_for_review\n\n### Actions not ready\n- pay, enrol_third_party, certify",
+  "actions_allowed": [
+    "read",
+    "search",
+    "fetch_card",
+    "list_directory",
+    "ask",
+    "list",
+    "submit_for_review"
+  ],
+  "actions_not_ready": [
+    "pay",
+    "enrol_third_party",
+    "certify"
+  ]
+}

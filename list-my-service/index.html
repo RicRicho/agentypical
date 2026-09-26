@@ -42,7 +42,7 @@
 </style>
 </head>
 <body>
-<div class="draft">LIVE on Agentypical.com · Phase 2 · 26 Sep 2026</div>
+<div class="draft">LIVE on Agentypical.com · Phase 3 · 26 Sep 2026</div>
 <div class="wrap">
   <header>
     <a href="/">Home</a>
@@ -64,6 +64,7 @@
         <option value="payments">Payments</option>
         <option value="hosting">Hosting</option>
         <option value="sms">SMS / phone</option>
+        <option value="identity">Identity / login</option>
       </select>
       <label for="discovery_url">Discovery URL</label>
       <input id="discovery_url" name="discovery_url" type="url" required maxlength="500" placeholder="https://example.com/.well-known/…">
@@ -74,7 +75,7 @@
       <input id="contact" name="contact" type="text" maxlength="200" placeholder="you@example.com">
       <button type="submit" id="go">Submit for review</button>
       <div class="msg" id="msg" role="status"></div>
-      <p class="note">API: <code>POST https://questions.agentypical.com/api/submissions</code>. Public lists: <a href="/directory.json">/directory.json</a>. No fake Certified cards.</p>
+      <p class="note">API: <code>POST https://questions.agentypical.com/api/submissions</code>. Public lists: <a href="/directory.json">/directory.json</a>. Listing schema: <a href="/specs/listing.v1.json">/specs/listing.v1.json</a>. No fake Certified cards.</p>
     </form>
   </main>
   <footer>Make your business Agentypical · <a href="/">Search</a> · <a href="/agent/">Agent brief</a></footer>

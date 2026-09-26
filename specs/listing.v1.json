@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentypical.com/specs/listing.v1.json",
+  "title": "Agentypical directory listing card",
+  "description": "Machine-readable schema for a public Agentypical directory card (Phase 3).",
+  "format_version": "1",
+  "schema_version": "1",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "category",
+    "discovery_url",
+    "status"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "format_version": {
+      "type": "string",
+      "const": "1",
+      "description": "Listing card format version."
+    },
+    "id": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "description": "Stable slug id within Agentypical directory."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 120
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "dns",
+        "email",
+        "payments",
+        "hosting",
+        "sms",
+        "identity"
+      ]
+    },
+    "discovery_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Public URL an agent can fetch to learn how to use the service (docs, well-known, OpenAPI, etc.)."
+    },
+    "website": {
+      "type": "string",
+      "format": "uri"
+    },
+    "agent_enrolment": {
+      "type": "boolean",
+      "description": "True if agents can enrol without a human-only signup wall for the core capability."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "known",
+        "evaluating",
+        "certified",
+        "none_yet"
+      ],
+      "description": "known = widely known and agent-API-capable; evaluating = promising but not fully agent-first; certified = earned Agentypical Certified (forbidden to invent); none_yet = category empty."
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Public notes only \u2014 no secrets, no smear."
+    },
+    "updated": {
+      "type": "string",
+      "description": "ISO date or YYYY-MM-DD"
+    }
+  },
+  "category_document": {
+    "description": "Shape of /directory/{category}.json",
+    "required_fields": [
+      "updated",
+      "phase",
+      "format_version",
+      "category",
+      "title",
+      "status",
+      "cards"
+    ],
+    "status_rules": "Category status is none_yet when cards empty; known if any known card; else evaluating if any evaluating; certified only when a truly Certified card exists."
+  }
+}

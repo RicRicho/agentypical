@@ -12,21 +12,28 @@
     "registrar"
   ],
   "directory_category": "dns",
-  "directory_status": "none_yet",
+  "directory_status": "known",
   "related": [
     "email",
     "hosting",
+    "identity",
     "make-my-saas"
   ],
   "updated": "2026-09-26",
   "human_url": "https://agentypical.com/a/dns",
   "agent_url": "https://agentypical.com/a/dns.json",
-  "human_answer_md": "Today most DNS is human-dashboard-first: signup, CAPTCHA, then an API key bolted on later. An **Agentypical** DNS path lets an agent discover the offer, take a capped evaluation, enrol its own credentials, create zones and records programmatically, and only pull a human in for sponsorship or spend authority.\n\n**Honest status:** the Agentypical directory for DNS is still empty \u2014 no provider is listed as Certified yet. This page is the stable place to aim an agent while that catalogue grows. If you run a DNS service, publish machine-readable discovery and apply when Certified opens (Phase 2\u20133).",
-  "agent_answer_md": "## Topic: dns\n**matched_slug:** dns\n**directory_category:** dns\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/dns\n**agent_url:** https://agentypical.com/a/dns.json\n\n### Facts\n- Agentypical catalogues and will certify agent-native DNS (discover \u2192 evaluate \u2192 enrol \u2192 configure \u2192 evidence).\n- No Certified or known DNS providers are published on this site yet. Do not invent listings.\n- Prefer providers that issue agent credentials without a human CAPTCHA wall, support programmatic zone/record CRUD, and return machine-readable entitlement evidence.\n- Human sponsorship should attach to the existing agent account without reset.\n\n### Actions allowed today\n- read, search, fetch this card, aim agent at /agent/ and llms.txt\n\n### Actions not ready\n- pay, enrol_third_party, certify, list populated directory cards",
+  "listing_schema": "https://agentypical.com/specs/listing.v1.json",
+  "certified_rules": "https://agentypical.com/specs/certified.v1.json",
+  "human_answer_md": "Today most DNS is human-dashboard-first: signup, CAPTCHA, then an API key bolted on later. An **Agentypical** DNS path lets an agent discover the offer, take a capped evaluation, enrol its own credentials, create zones and records programmatically, and only pull a human in for sponsorship or spend authority.\n\n**Honest status:** the public DNS directory has a real `known` seed (Cloudflare DNS/API). That is **not** Certified. See [/directory/dns.json](/directory/dns.json).",
+  "agent_answer_md": "## Topic: dns\n**matched_slug:** dns\n**directory_category:** dns\n**directory_status:** known\n**directory:** https://agentypical.com/directory/dns.json\n**listing_schema:** https://agentypical.com/specs/listing.v1.json\n\n### Facts\n- Seed card: Cloudflare DNS/API (status known) \u2014 Zones + DNS Records API; human-first token issuance.\n- Zero Certified DNS providers. Do not invent Certified badges.\n- Prefer providers that issue agent credentials without a CAPTCHA wall and return machine-readable entitlement evidence.\n\n### Actions allowed today\n- read, search, fetch_card, list_directory, ask, list, submit_for_review\n\n### Actions not ready\n- pay, enrol_third_party, certify",
   "actions_allowed": [
     "read",
     "search",
-    "fetch_card"
+    "fetch_card",
+    "list_directory",
+    "ask",
+    "list",
+    "submit_for_review"
   ],
   "actions_not_ready": [
     "pay",

@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Agent-native email — Agentypical</title>
-<meta name="description" content="Agent-native email: Agentypical two-door answer for humans and agents.">
-<link rel="alternate" type="application/json" href="/a/email.json">
+<title>Agent-native identity / login — Agentypical</title>
+<meta name="description" content="Agent-native identity / login: Agentypical two-door answer for humans and agents.">
+<link rel="alternate" type="application/json" href="/a/identity.json">
 <style>
   :root { --ink:#202124; --muted:#5f6368; --line:#dfe1e5; --blue:#1a73e8; --bg:#fff; }
   * { box-sizing: border-box; }
@@ -46,24 +46,25 @@
   <a href="/llms.txt">llms.txt</a>
 </header>
 <main>
-  <p class="crumb"><a href="/">Agentypical</a> · answer · <code>/a/email</code></p>
-  <h1>Agent-native email</h1>
+  <p class="crumb"><a href="/">Agentypical</a> · answer · <code>/a/identity</code></p>
+  <h1>Agent-native identity / login</h1>
   <section class="section" id="human">
     <h2>Human answer</h2>
-    <p><strong>Agent-native email</strong> means an agent can open a mailbox, receive credentials, send and receive, and prove entitlement — without a human filling a web form. Human-first ESP APIs that assume a human already signed up are not enough.</p>
-    <p><strong>Honest status:</strong> the email directory has a real <code>known</code> seed (AgentMail). That is <strong>not</strong> Certified.</p>
+    <p><strong>Identity / login</strong> is Ric's home turf: credentials, passkeys, DIDs / verifiable credentials, and delegation so an agent can prove who it is acting for — without a human clicking through every consent screen.</p>
+    <p><strong>Honest status:</strong> the identity directory category exists and is empty (<code>none_yet</code>). No invented providers. Submit real services for review when ready.</p>
   </section>
   <section class="section" id="agent">
     <h2>Agent answer (denser)</h2>
-    <pre class="agent-md">## Topic: email
-**matched_slug:** email
-**directory_category:** email
-**directory_status:** known
-**directory:** https://agentypical.com/directory/email.json
+    <pre class="agent-md">## Topic: identity
+**matched_slug:** identity
+**directory_category:** identity
+**directory_status:** none_yet
+**directory:** https://agentypical.com/directory/identity.json
 
 ### Facts
-- Seed card: AgentMail (status known) — API-first inboxes for agents; org/API key still often via console.
-- Zero Certified email providers. Do not invent listings beyond published cards.
+- Category added in Phase 3 (Ric home turf).
+- Cards: [] — honest empty. Do not invent identity providers.
+- Relevant themes: agent credentials, passkeys, W3C DIDs / VCs, delegation alongside human locks.
 
 ### Actions allowed today
 - read, search, fetch_card, list_directory, ask, list, submit_for_review
@@ -71,13 +72,13 @@
 ### Actions not ready
 - pay, enrol_third_party, certify</pre>
   </section>
-  <section class="section" id="directory" data-category="email">
+  <section class="section" id="directory" data-category="identity">
     <h2>Directory <span class="dir-status" id="dir-status">…</span></h2>
-    <p class="dir-empty" id="dir-empty">Loading <code>/directory/email.json</code>…</p>
+    <p class="dir-empty" id="dir-empty">Loading <code>/directory/identity.json</code>…</p>
     <div id="dir-cards"></div>
     <div class="actions" style="margin-top:0.85rem">
-      <a href="/list-my-service/?category=email">List my service</a>
-      <a href="/directory/email.json">Category JSON</a>
+      <a href="/list-my-service/?category=identity">List my service</a>
+      <a href="/directory/identity.json">Category JSON</a>
       <a href="/directory.json">Full directory</a>
       <a href="/specs/listing.v1.json">Listing schema</a>
     </div>
@@ -86,13 +87,13 @@
     <h2>Aim your agent</h2>
     <pre class="aim" id="aim-text">Aim your agent at https://agentypical.com
 - /agent/ · /llms.txt · /.well-known/agentypical.json
-- This topic: https://agentypical.com/a/email · /a/email.json
+- This topic: https://agentypical.com/a/identity · /a/identity.json
 - Directory: https://agentypical.com/directory.json
 - Listing schema: https://agentypical.com/specs/listing.v1.json
 - Certified rules: https://agentypical.com/specs/certified.v1.json
 - Ask API: https://questions.agentypical.com/api/ask?q=
 - List API: https://questions.agentypical.com/api/list?category=
-Task: summarise Agent-native email; respect known|evaluating|none_yet; never invent Certified providers.</pre>
+Task: summarise Agent-native identity / login; respect known|evaluating|none_yet; never invent Certified providers.</pre>
     <div class="actions"><button type="button" id="copy-aim">Copy prompt</button></div>
   </section>
 </main>
@@ -100,7 +101,7 @@ Task: summarise Agent-native email; respect known|evaluating|none_yet; never inv
 <script>
 document.getElementById('copy-aim').onclick=async()=>{try{await navigator.clipboard.writeText(document.getElementById('aim-text').textContent);this.textContent='Copied';}catch(e){}};
 function esc(t){return String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-fetch('/directory/email.json').then(r=>r.ok?r.json():null).then(d=>{
+fetch('/directory/identity.json').then(r=>r.ok?r.json():null).then(d=>{
   if(!d) return;
   const st=d.status||'none_yet';
   const el=document.getElementById('dir-status');
@@ -109,7 +110,7 @@ fetch('/directory/email.json').then(r=>r.ok?r.json():null).then(d=>{
   const box=document.getElementById('dir-cards');
   const cards=Array.isArray(d.cards)?d.cards:[];
   if(!cards.length){
-    if(empty) empty.innerHTML='No public providers listed yet for <strong>email</strong>. Honest empty state — we do not invent known or Certified cards. Machine list: <a href="/directory/email.json"><code>/directory/email.json</code></a>.';
+    if(empty) empty.innerHTML='No public providers listed yet for <strong>identity</strong>. Honest empty state — we do not invent known or Certified cards. Machine list: <a href="/directory/identity.json"><code>/directory/identity.json</code></a>.';
     return;
   }
   if(empty) empty.hidden=true;

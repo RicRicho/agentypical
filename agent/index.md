@@ -2,7 +2,7 @@
 
 **URL:** https://agentypical.com  
 **Audience:** autonomous software agents (and humans who point agents here)  
-**Status:** LIVE Phase 2 on Agentypical.com (26 Sep 2026).
+**Status:** LIVE Phase 3 on Agentypical.com (26 Sep 2026).
 
 ## One-line definition
 **Agentypical** — designed so an autonomous software agent can discover, evaluate, enrol in, configure, pay for and use a service directly, with human sponsorship only where genuinely required.
@@ -13,77 +13,37 @@
 | **Agentypical** | Global commercial / company brand (Agentypical.com) |
 | **Agent First** | Underlying principle + patent-pending mechanism (AU provisional 2026907766, filed 11 Sep 2026) |
 | **Agentypical Standard** | Proposed public spec for conforming services |
-| **Agentypical Certified** | Proposed recognition for conforming services |
+| **Agentypical Certified** | Proposed recognition for conforming services — see `/specs/certified/` |
 
 ## Positioning
 - Tagline: **built for agents from first contact**
 - Commercial instruction: **Make your business Agentypical.**
-- Double reading: *agent-typical* (normal for agents) + *atypical* (not human-first Internet)
 
-## Adoption path an Agentypical service should support
-1. **Discovery** — machine-readable offer + setup
-2. **Evaluation** — inspect capabilities, limits, price, evidence (no human sales required)
-3. **Enrolment** — agent establishes its own account/credentials
-4. **Payment** — authorised agent pays or arranges sponsorship
-5. **Configuration** — programmatic setup
-6. **Operation** — machine-appropriate interfaces
-7. **Evidence** — entitlement, execution, outcomes
-8. **Human sponsorship** — attaches cleanly without resetting the agent account
+## Phase 3 directory + specs
+- Index: https://agentypical.com/directory.json (`phase: 3`, `format_version: 1`)
+- Categories: `dns`, `email`, `payments`, `hosting`, `sms`, **`identity`**
+- Seed cards (real only): Cloudflare DNS/API (`known`), AgentMail (`known`), Stripe API (`evaluating`)
+- **Zero Certified cards.** Fake badges forbidden.
+- Listing schema: https://agentypical.com/specs/listing.v1.json · human https://agentypical.com/specs/listing/
+- Certified rules: https://agentypical.com/specs/certified.v1.json · human https://agentypical.com/specs/certified/
+- Submit: https://agentypical.com/list-my-service/ → `POST …/api/submissions` → `pending_review` (not auto-public)
 
-## Human-first vs Agent First (contrast)
-- Human-first: website → signup → CAPTCHA → payment → dashboard → API key → agent use
-- Agent First: agent → discover → evaluate → bounded enrolment → real use → sponsor only when needed → continue
-
-Working line: **"We gave the internet a signup button for AI."**
-
-## Phase 1 answer pages
-Stable human+agent answers (shareable, survive refresh):
-- https://agentypical.com/a/dns
-- https://agentypical.com/a/email
-- https://agentypical.com/a/payments
-- https://agentypical.com/a/hosting
-- https://agentypical.com/a/sms
-- https://agentypical.com/a/make-my-saas
-- https://agentypical.com/a/certified
-
-Each has `/a/{slug}.json` with the same facts. Topic index: `/topics.json`.
-Each answer page includes a **Directory** section. Public cards are reviewed before publish — **status none_yet / empty arrays are intentional**. Do not invent Certified providers.
-
-## Phase 2 directory
-- Index: https://agentypical.com/directory.json
-- By category: https://agentypical.com/directory/{category}.json (`dns`, `email`, `payments`, `hosting`, `sms`)
-- Statuses: `known` | `evaluating` | `certified` | `none_yet`
-- Human form: https://agentypical.com/list-my-service/
-- Submit API: `POST https://questions.agentypical.com/api/submissions` → `201 pending_review` (not auto-public as known)
-- GET `/api/submissions` does **not** list the review queue
-
-## Exciting example asks
-- I need an agent-first DNS service. What have you got?
-- Is there an agent-native email service?
-- Who takes agent payments without a human checkout form?
-- Make my SaaS Agentypical — where do I start?
-- What does Agentypical Certified actually require?
-
-## Out of scope (strategic boundary)
-Agentypical commercialises and packages Agent First (standard, demo, certification, licensing). It is **not** a mandate to build every agent service.
+## Answer pages
+`/a/{slug}/` + `/a/{slug}.json` for: dns, email, payments, hosting, sms, identity, make-my-saas, certified.
 
 ## Machine endpoints
-- `GET /` — human landing (search UI → `/a/{slug}`)
-- `GET /a/{slug}/` — human answer page (+ Directory section)
-- `GET /a/{slug}.json` — topic card JSON
-- `GET /topics.json` — curated topic set
-- `GET /directory.json` — directory index (honest empties OK)
-- `GET /directory/{category}.json` — category list for agents
-- `GET /list-my-service/` — human submit form
-- `POST https://questions.agentypical.com/api/submissions` — queue for review
-- `GET /agent/` — this brief (text/markdown)
-- `GET /llms.txt` — short pointer + definition
-- `GET /.well-known/agentypical.json` — machine card (`phase: "2"`, `list_directory` allowed)
-- `GET https://questions.agentypical.com/api/questions` — live recent questions (Worker)
-- `POST https://questions.agentypical.com/api/questions` — append public question (rate-limited, dupe/spam filter)
-- `GET /questions.json` — static seed fallback
+- `GET /.well-known/agentypical.json` — `phase: "3"`
+- `GET /llms.txt` · `GET /topics.json` · `GET /directory.json` · `GET /directory/{category}.json`
+- `GET https://questions.agentypical.com/api/ask?q=` — match topic
+- `GET https://questions.agentypical.com/api/list?category=` — category cards
+- `GET|POST https://questions.agentypical.com/api/questions`
+- `POST https://questions.agentypical.com/api/submissions` — review queue only
 
-## Contact
-Point humans/agents to Ric Richardson / Agentypical — replies via max@mail.ricricho.com during build.
+## Actions
+- **allowed:** read, search, fetch_card, list_directory, submit_for_review, ask, list
+- **not_ready:** pay, enrol_third_party, certify
 
-— Max for Ric · Phase 2 live 26 Sep 2026 AEST
+## Domain
+agentypical.com live. **agentbred.com must stay unpointed.**
+
+— Max for Ric · Phase 3 live 26 Sep 2026 AEST

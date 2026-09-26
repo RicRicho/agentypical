@@ -1,12 +1,26 @@
 {
   "updated": "2026-09-26",
-  "phase": 2,
+  "phase": 3,
+  "format_version": "1",
   "category": "email",
   "title": "Email",
   "description": "Agent-native email / mailbox providers",
-  "status": "none_yet",
-  "cards": [],
+  "status": "known",
+  "cards": [
+    {
+      "id": "agentmail",
+      "name": "AgentMail",
+      "category": "email",
+      "discovery_url": "https://www.agentmail.to/docs/introduction",
+      "agent_enrolment": true,
+      "status": "known",
+      "notes": "API-first email for agents: programmatic inboxes, send/receive, webhooks. Console signup still exists for the org/API key; once keyed, inbox CRUD is agent-capable. Listed as known, not Certified.",
+      "website": "https://www.agentmail.to/",
+      "updated": "2026-09-26"
+    }
+  ],
   "index": "/directory.json",
+  "listing_schema": "/specs/listing.v1.json",
   "submit": "https://agentypical.com/list-my-service/",
-  "note": "No public known/evaluating/certified cards yet. Submissions go to review queue and are not auto-published."
+  "note": "Public cards are reviewed before publish. Status known|evaluating only for seeds \u2014 never fake Certified."
 }

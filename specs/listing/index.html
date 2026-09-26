@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Listing schema v1 — Agentypical</title>
+<link rel="alternate" type="application/json" href="/specs/listing.v1.json">
+<style>
+  :root { --ink:#202124; --muted:#5f6368; --line:#dfe1e5; --blue:#1a73e8; --bg:#fff; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:var(--bg); color:var(--ink);
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+  header { display:flex; justify-content:flex-end; gap:1.25rem; padding:0.85rem 1.25rem; font-size:0.875rem; }
+  header a { color:var(--muted); text-decoration:none; }
+  main { width:min(720px,100%); margin:0 auto; padding:1.5rem 1rem 3rem; }
+  .crumb { font-size:0.85rem; color:var(--muted); }
+  .crumb a { color:var(--blue); text-decoration:none; }
+  h1 { font-size:1.75rem; font-weight:500; }
+  .section { margin:1.5rem 0; padding:1.1rem 1.2rem; border:1px solid var(--line); border-radius:12px; }
+  .section h2 { font-size:0.8rem; font-weight:500; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin:0 0 0.65rem; }
+  .section p, .section li { line-height:1.55; font-size:0.95rem; }
+  .section a { color:var(--blue); }
+  .dir-status { display:inline-block; font-size:0.75rem; padding:0.15rem 0.5rem; border-radius:999px; background:#f1f3f4; color:var(--muted); }
+  .dir-empty { color:var(--muted); font-size:0.9rem; }
+  .card { border:1px solid var(--line); border-radius:10px; padding:0.75rem 0.9rem; margin:0.55rem 0; }
+  .card h3 { margin:0 0 0.25rem; font-size:1rem; font-weight:500; }
+  .card .meta { font-size:0.8rem; color:var(--muted); }
+  .badge { display:inline-block; font-size:0.7rem; padding:0.1rem 0.45rem; border-radius:999px; background:#e8f0fe; color:#174ea6; margin-left:0.35rem; }
+  .badge.evaluating { background:#fef7e0; color:#7a5d00; }
+  .badge.certified { background:#e6f4ea; color:#0b8043; }
+  .actions a, .actions button { border:1px solid var(--line); background:#f8f9fa; color:var(--ink); border-radius:999px; padding:0.4rem 0.85rem; font-size:0.85rem; text-decoration:none; display:inline-block; margin-right:0.4rem; cursor:pointer; }
+  pre.aim, .agent-md, pre.code { background:#f8f9fa; border:1px solid var(--line); border-radius:8px; padding:0.85rem 1rem; white-space:pre-wrap; font-size:0.85rem; }
+  .draft { position:fixed; top:0; left:0; right:0; background:#0b8043; color:#fff; font-size:0.75rem; text-align:center; padding:0.35rem; }
+  body { padding-top:1.6rem; }
+  footer { text-align:center; padding:1.5rem; color:var(--muted); font-size:0.8rem; }
+</style>
+</head>
+<body>
+<div class="draft">LIVE on Agentypical.com · Phase 3 · 26 Sep 2026</div>
+<header>
+  <a href="/">Home</a>
+  <a href="/directory.json">Directory</a>
+  <a href="/specs/listing.v1.json">JSON schema</a>
+  <a href="/specs/certified/">Certified rules</a>
+</header>
+<main>
+  <p class="crumb"><a href="/">Agentypical</a> · specs · listing v1</p>
+  <h1>Public listing schema <span class="dir-status">format_version 1</span></h1>
+  <section class="section">
+    <h2>What this is</h2>
+    <p>Machine-readable shape for a public Agentypical directory card. Format version: <strong>1</strong>. Canonical JSON Schema: <a href="/specs/listing.v1.json"><code>/specs/listing.v1.json</code></a>.</p>
+  </section>
+  <section class="section">
+    <h2>Required fields</h2>
+    <ul>
+      <li><code>id</code> — stable slug</li>
+      <li><code>name</code> — display name</li>
+      <li><code>category</code> — dns | email | payments | hosting | sms | identity</li>
+      <li><code>discovery_url</code> — public URL agents can fetch</li>
+      <li><code>status</code> — known | evaluating | certified | none_yet</li>
+    </ul>
+    <p>Optional: <code>website</code>, <code>agent_enrolment</code> (boolean), <code>notes</code> (public only), <code>updated</code>.</p>
+  </section>
+  <section class="section">
+    <h2>Status meanings</h2>
+    <ul>
+      <li><strong>known</strong> — widely known and agent-API-capable (may still have human-first account setup).</li>
+      <li><strong>evaluating</strong> — promising, not fully agent-first yet.</li>
+      <li><strong>certified</strong> — earned Agentypical Certified after review. <strong>Never invent.</strong></li>
+      <li><strong>none_yet</strong> — category empty on purpose.</li>
+    </ul>
+  </section>
+  <section class="section">
+    <h2>Where listings live</h2>
+    <p>Index <a href="/directory.json"><code>/directory.json</code></a> · per category <code>/directory/{category}.json</code> · submit for review <a href="/list-my-service/">/list-my-service/</a> (not auto-public).</p>
+  </section>
+</main>
+<footer>Make your business Agentypical · Phase 3</footer>
+</body>
+</html>

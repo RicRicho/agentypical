@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Agent-native hosting — Agentypical</title>
-<meta name="description" content="Agent-native hosting: Agentypical two-door answer for humans and agents.">
+<meta name="description" content="Agent-native hosting: Agentypical two-door answer.">
 <link rel="alternate" type="application/json" href="/a/hosting.json">
 <style>
   :root { --ink:#202124; --muted:#5f6368; --line:#dfe1e5; --blue:#1a73e8; --bg:#fff; }
@@ -19,19 +19,25 @@
   h1 { font-size:1.75rem; font-weight:500; }
   .section { margin:1.5rem 0; padding:1.1rem 1.2rem; border:1px solid var(--line); border-radius:12px; }
   .section h2 { font-size:0.8rem; font-weight:500; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin:0 0 0.65rem; }
-  .section p { line-height:1.55; font-size:0.95rem; }
+  .section p, .section li { line-height:1.55; font-size:0.95rem; }
   .section a { color:var(--blue); }
   .dir-status { display:inline-block; font-size:0.75rem; padding:0.15rem 0.5rem; border-radius:999px; background:#f1f3f4; color:var(--muted); }
   .dir-empty { color:var(--muted); font-size:0.9rem; }
-  .actions a { border:1px solid var(--line); background:#f8f9fa; color:var(--ink); border-radius:999px; padding:0.4rem 0.85rem; font-size:0.85rem; text-decoration:none; display:inline-block; margin-right:0.4rem; }
-  pre.aim, .agent-md { background:#f8f9fa; border:1px solid var(--line); border-radius:8px; padding:0.85rem 1rem; white-space:pre-wrap; font-size:0.85rem; }
+  .card { border:1px solid var(--line); border-radius:10px; padding:0.75rem 0.9rem; margin:0.55rem 0; }
+  .card h3 { margin:0 0 0.25rem; font-size:1rem; font-weight:500; }
+  .card .meta { font-size:0.8rem; color:var(--muted); }
+  .badge { display:inline-block; font-size:0.7rem; padding:0.1rem 0.45rem; border-radius:999px; background:#e8f0fe; color:#174ea6; margin-left:0.35rem; }
+  .badge.evaluating { background:#fef7e0; color:#7a5d00; }
+  .badge.certified { background:#e6f4ea; color:#0b8043; }
+  .actions a, .actions button { border:1px solid var(--line); background:#f8f9fa; color:var(--ink); border-radius:999px; padding:0.4rem 0.85rem; font-size:0.85rem; text-decoration:none; display:inline-block; margin-right:0.4rem; cursor:pointer; }
+  pre.aim, .agent-md, pre.code { background:#f8f9fa; border:1px solid var(--line); border-radius:8px; padding:0.85rem 1rem; white-space:pre-wrap; font-size:0.85rem; }
   .draft { position:fixed; top:0; left:0; right:0; background:#0b8043; color:#fff; font-size:0.75rem; text-align:center; padding:0.35rem; }
   body { padding-top:1.6rem; }
   footer { text-align:center; padding:1.5rem; color:var(--muted); font-size:0.8rem; }
 </style>
 </head>
 <body>
-<div class="draft">LIVE on Agentypical.com · Phase 2 · 26 Sep 2026</div>
+<div class="draft">LIVE on Agentypical.com · Phase 3 · 26 Sep 2026</div>
 <header>
   <a href="/">Home</a>
   <a href="/agent/">For agents</a>
@@ -41,47 +47,47 @@
 <main>
   <p class="crumb"><a href="/">Agentypical</a> · answer · <code>/a/hosting</code></p>
   <h1>Agent-native hosting</h1>
-  <section class="section" id="human">
-    <h2>Human answer</h2>
-    <p>Agent-native hosting means an agent can discover an offer, take a bounded trial, provision an environment, and keep the same account when a human sponsors spend.</p>
-    <p><strong>Honest status:</strong> the hosting directory category is empty (none_yet).</p>
-  </section>
-  <section class="section" id="agent">
-    <h2>Agent answer (denser)</h2>
-    <pre class="agent-md">## Topic: hosting
+  <section class="section" id="human"><h2>Human answer</h2><p><strong>Agent-native hosting</strong> means an agent can discover an offer, take a bounded trial, provision an environment, configure it programmatically, and keep the same account when a human sponsors spend.</p><p><strong>Honest status:</strong> hosting directory is empty (<code>none_yet</code>). No fake cards.</p></section>
+  <section class="section" id="agent"><h2>Agent answer (denser)</h2><pre class="agent-md">## Topic: hosting
 **directory_status:** none_yet
 **directory:** https://agentypical.com/directory/hosting.json
-No Certified or known hosting providers published. Do not invent listings.
-Actions allowed: read, search, fetch_card, list_directory
-Actions not ready: pay, enrol_third_party, certify</pre>
-  </section>
+Cards: []. Do not invent providers.
+Actions allowed: read, search, fetch_card, list_directory, ask, list, submit_for_review
+Actions not ready: pay, enrol_third_party, certify</pre></section>
   <section class="section" id="directory" data-category="hosting">
-    <h2>Directory <span class="dir-status none_yet" id="dir-status">none_yet</span></h2>
-    <p class="dir-empty" id="dir-empty">No public providers listed yet for <strong>hosting</strong>. Honest empty state — we do not invent known or Certified cards. Machine list: <a href="/directory/hosting.json"><code>/directory/hosting.json</code></a>.</p>
-    <ul id="dir-cards" hidden></ul>
+    <h2>Directory <span class="dir-status" id="dir-status">…</span></h2>
+    <p class="dir-empty" id="dir-empty">Loading…</p>
+    <div id="dir-cards"></div>
     <div class="actions" style="margin-top:0.85rem">
       <a href="/list-my-service/?category=hosting">List my service</a>
-      <a href="/directory.json">Full directory JSON</a>
+      <a href="/directory/hosting.json">Category JSON</a>
+      <a href="/directory.json">Full directory</a>
     </div>
   </section>
-  <section class="section" id="aim">
-    <h2>Aim your agent</h2>
-    <pre class="aim" id="aim-text">Aim your agent at https://agentypical.com
-- /agent/ · /llms.txt · /.well-known/agentypical.json
+  <section class="section" id="aim"><h2>Aim your agent</h2><pre class="aim" id="aim-text">Aim your agent at https://agentypical.com
 - This topic: https://agentypical.com/a/hosting · /a/hosting.json
 - Directory: https://agentypical.com/directory.json
-Task: summarise Agent-native hosting, note directory_status none_yet, do not invent Certified providers.</pre>
-    <div class="actions"><button type="button" id="copy-aim">Copy prompt</button></div>
-  </section>
+- Specs: /specs/listing.v1.json · /specs/certified.v1.json
+Task: summarise Agent-native hosting; never invent Certified providers.</pre><div class="actions"><button type="button" id="copy-aim">Copy prompt</button></div></section>
 </main>
-<footer>Make your business Agentypical · Phase 2 directory · No fake Certified listings</footer>
+<footer>Make your business Agentypical · Phase 3 · No fake Certified listings</footer>
 <script>
 document.getElementById('copy-aim').onclick=async()=>{try{await navigator.clipboard.writeText(document.getElementById('aim-text').textContent);this.textContent='Copied';}catch(e){}};
+function esc(t){return String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 fetch('/directory/hosting.json').then(r=>r.ok?r.json():null).then(d=>{
   if(!d) return;
   const st=d.status||'none_yet';
   const el=document.getElementById('dir-status');
   if(el){el.textContent=st;el.className='dir-status '+st;}
+  const empty=document.getElementById('dir-empty');
+  const box=document.getElementById('dir-cards');
+  const cards=Array.isArray(d.cards)?d.cards:[];
+  if(!cards.length){
+    if(empty) empty.innerHTML='No public providers listed yet for <strong>hosting</strong>. Honest empty. Machine list: <a href="/directory/hosting.json"><code>/directory/hosting.json</code></a>.';
+    return;
+  }
+  if(empty) empty.hidden=true;
+  box.innerHTML=cards.map(c=>'<article class="card"><h3>'+esc(c.name)+' <span class="badge '+esc(c.status)+'">'+esc(c.status)+'</span></h3><p class="meta"><a href="'+esc(c.discovery_url)+'">'+esc(c.discovery_url)+'</a></p>'+(c.notes?'<p>'+esc(c.notes)+'</p>':'')+'</article>').join('');
 }).catch(()=>{});
 </script>
 </body>

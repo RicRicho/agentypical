@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Make your business Agentypical — Agentypical</title>
-<meta name="description" content="Make your business Agentypical: Agentypical two-door answer.">
-<link rel="alternate" type="application/json" href="/a/make-my-saas.json">
+<title>Agentypical Certified — plain rules</title>
+<link rel="alternate" type="application/json" href="/specs/certified.v1.json">
 <style>
   :root { --ink:#202124; --muted:#5f6368; --line:#dfe1e5; --blue:#1a73e8; --bg:#fff; }
   * { box-sizing: border-box; }
@@ -40,42 +39,33 @@
 <div class="draft">LIVE on Agentypical.com · Phase 3 · 26 Sep 2026</div>
 <header>
   <a href="/">Home</a>
-  <a href="/agent/">For agents</a>
-  <a href="/list-my-service/">List my service</a>
-  <a href="/llms.txt">llms.txt</a>
+  <a href="/a/certified/">Answer page</a>
+  <a href="/specs/certified.v1.json">JSON rules</a>
+  <a href="/specs/listing/">Listing schema</a>
 </header>
 <main>
-  <p class="crumb"><a href="/">Agentypical</a> · answer · <code>/a/make-my-saas</code></p>
-  <h1>Make your business Agentypical</h1>
-  <section class="section" id="human"><h2>Human answer</h2><p><strong>Make your business Agentypical</strong> in five moves:</p>
-    <ol>
-      <li>Publish <strong>machine-readable discovery</strong>.</li>
-      <li>Allow <strong>agent enrolment and configuration</strong>.</li>
-      <li>Offer <strong>capped evaluation</strong> with real evidence.</li>
-      <li>Accept <strong>agent payment or clean human sponsorship</strong> on the same account.</li>
-      <li>Apply later for <strong>Agentypical Certified</strong> — see <a href="/specs/certified/">Certified rules</a>.</li>
-    </ol>
-    <p>Listing schema: <a href="/specs/listing.v1.json"><code>/specs/listing.v1.json</code></a>. Underlying mechanism: <strong>Agent First</strong> (patent-pending).</p></section>
-  <section class="section" id="agent"><h2>Agent answer (denser)</h2><pre class="agent-md">## Topic: make-my-saas
-**listing_schema:** https://agentypical.com/specs/listing.v1.json
-**certified_rules:** https://agentypical.com/specs/certified.v1.json
-### Adoption checklist
-1 discovery 2 evaluate 3 enrol 4 configure 5 pay/sponsor 6 evidence 7 later Certified
-### Actions allowed today
-read, search, fetch_card, list_directory, ask, list, submit_for_review
-### Actions not ready
-certify, pay, enrol_third_party</pre></section>
-  <section class="section" id="directory" data-category="overview">
-    <h2>Directory</h2>
-    <p class="dir-empty">Not a marketplace category. See <a href="/directory.json"><code>/directory.json</code></a>, <a href="/specs/listing.v1.json">listing schema</a>, <a href="/specs/certified/">Certified rules</a>.</p>
+  <p class="crumb"><a href="/">Agentypical</a> · specs · certified v1</p>
+  <h1>What “Certified” means</h1>
+  <section class="section">
+    <h2>Plain English</h2>
+    <p>The <strong>Agentypical Certified</strong> badge means the service was <em>reviewed</em> against the Agentypical Standard: an agent can discover, evaluate, enrol, configure, pay or arrange sponsorship, operate, and get evidence — with a human only where that is genuinely required.</p>
   </section>
-  <section class="section" id="aim"><h2>Aim your agent</h2><pre class="aim" id="aim-text">Aim your agent at https://agentypical.com
-- This topic: https://agentypical.com/a/make-my-saas · /a/make-my-saas.json
-- Directory: https://agentypical.com/directory.json
-- Specs: /specs/listing.v1.json · /specs/certified.v1.json
-Task: summarise Make your business Agentypical; never invent Certified providers.</pre><div class="actions"><button type="button" id="copy-aim">Copy prompt</button></div></section>
+  <section class="section">
+    <h2>Rules (non-negotiable)</h2>
+    <ol>
+      <li>Certified is <strong>earned</strong> by review — never self-asserted on this site.</li>
+      <li><strong>Empty is honest.</strong> Zero Certified cards is correct until someone earns the badge.</li>
+      <li><strong>Fake badges are forbidden.</strong> Do not invent Certified providers or dress up empty categories as Certified.</li>
+      <li>Public seeds may use <code>known</code> or <code>evaluating</code> only until certification is live and earned.</li>
+      <li>List-my-service submissions go to a <strong>review queue</strong> and are not auto-published as known, evaluating, or Certified.</li>
+      <li>The <code>certify</code> action / application API is <strong>not ready</strong>.</li>
+    </ol>
+  </section>
+  <section class="section">
+    <h2>Machine copy</h2>
+    <p><a href="/specs/certified.v1.json"><code>/specs/certified.v1.json</code></a> · format_version <strong>1</strong> · also explained at <a href="/a/certified/">/a/certified/</a>.</p>
+  </section>
 </main>
 <footer>Make your business Agentypical · Phase 3 · No fake Certified listings</footer>
-<script>document.getElementById('copy-aim').onclick=async()=>{try{await navigator.clipboard.writeText(document.getElementById('aim-text').textContent);this.textContent='Copied';}catch(e){}};</script>
 </body>
 </html>

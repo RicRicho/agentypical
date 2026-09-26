@@ -1,12 +1,26 @@
 {
   "updated": "2026-09-26",
-  "phase": 2,
+  "phase": 3,
+  "format_version": "1",
   "category": "dns",
   "title": "DNS",
   "description": "Agent-native DNS / registrar / nameserver providers",
-  "status": "none_yet",
-  "cards": [],
+  "status": "known",
+  "cards": [
+    {
+      "id": "cloudflare-dns",
+      "name": "Cloudflare DNS / API",
+      "category": "dns",
+      "discovery_url": "https://developers.cloudflare.com/api/",
+      "agent_enrolment": false,
+      "status": "known",
+      "notes": "Widely known Zones + DNS Records API. Agents can manage records with an API token; account creation and token issuance are still human-first (dashboard / CAPTCHA). Listed as known, not Certified.",
+      "website": "https://www.cloudflare.com/",
+      "updated": "2026-09-26"
+    }
+  ],
   "index": "/directory.json",
+  "listing_schema": "/specs/listing.v1.json",
   "submit": "https://agentypical.com/list-my-service/",
-  "note": "No public known/evaluating/certified cards yet. Submissions go to review queue and are not auto-published."
+  "note": "Public cards are reviewed before publish. Status known|evaluating only for seeds \u2014 never fake Certified."
 }

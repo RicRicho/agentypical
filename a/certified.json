@@ -14,17 +14,24 @@
     "make-my-saas",
     "dns",
     "email",
-    "payments"
+    "payments",
+    "identity"
   ],
   "updated": "2026-09-26",
   "human_url": "https://agentypical.com/a/certified",
   "agent_url": "https://agentypical.com/a/certified.json",
-  "human_answer_md": "**Agentypical Certified** is the proposed recognition for services that conform to the Agentypical Standard: agents can discover, evaluate, enrol, configure, pay or arrange sponsorship, operate, and receive evidence \u2014 with human involvement only where genuinely required.\n\n**Honest status:** the certification application and public Certified directory are **not live yet** (Phase 2\u20133). There are **no Certified cards** on this site today. Claiming otherwise would be fake. Start by making the product Agentypical (see [/a/make-my-saas](/a/make-my-saas)); certification comes after the checklist is real.",
-  "agent_answer_md": "## Topic: certified\n**matched_slug:** certified\n**directory_status:** none_yet\n**human_url:** https://agentypical.com/a/certified\n**agent_url:** https://agentypical.com/a/certified.json\n\n### Facts\n- Certified = proposed recognition against Agentypical Standard.\n- Application + status query = Phase 3. Not ready.\n- Zero Certified directory cards published. Do not invent any.\n\n### Actions allowed today\n- read, search, fetch this card\n\n### Actions not ready\n- certify, list certified providers",
+  "listing_schema": "https://agentypical.com/specs/listing.v1.json",
+  "certified_rules": "https://agentypical.com/specs/certified.v1.json",
+  "human_answer_md": "**Agentypical Certified** means a service has been reviewed against the Agentypical Standard.\n\n**Plain rules:**\n1. Certified is earned by review \u2014 never self-asserted here.\n2. Empty / zero Certified cards is honest; fake badges are forbidden.\n3. Phase 3 seeds use `known` or `evaluating` only \u2014 **zero** Certified cards today.\n4. Submissions are review-queued, not auto-Certified.\n5. `certify` action is not ready.\n\nMachine: [/specs/certified.v1.json](/specs/certified.v1.json). Human: [/specs/certified/](/specs/certified/).",
+  "agent_answer_md": "## Topic: certified\n**matched_slug:** certified\n**directory_status:** none_yet\n**rules:** https://agentypical.com/specs/certified.v1.json\n**human_rules:** https://agentypical.com/specs/certified/\n**listing_schema:** https://agentypical.com/specs/listing.v1.json\n\n### Facts\n- Certified = earned recognition against Agentypical Standard.\n- Zero Certified directory cards published. Do not invent any.\n- Seeds may be known|evaluating only.\n- Fake / empty-as-certified is forbidden.\n\n### Actions allowed today\n- read, search, fetch_card, list_directory, ask, list\n\n### Actions not ready\n- certify, pay, enrol_third_party",
   "actions_allowed": [
     "read",
     "search",
-    "fetch_card"
+    "fetch_card",
+    "list_directory",
+    "ask",
+    "list",
+    "submit_for_review"
   ],
   "actions_not_ready": [
     "pay",

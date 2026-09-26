@@ -1,12 +1,26 @@
 {
   "updated": "2026-09-26",
-  "phase": 2,
+  "phase": 3,
+  "format_version": "1",
   "category": "payments",
   "title": "Payments",
   "description": "Agent spend and sponsorship payment rails",
-  "status": "none_yet",
-  "cards": [],
+  "status": "evaluating",
+  "cards": [
+    {
+      "id": "stripe-api",
+      "name": "Stripe API",
+      "category": "payments",
+      "discovery_url": "https://docs.stripe.com/api",
+      "agent_enrolment": false,
+      "status": "evaluating",
+      "notes": "Mature payments API widely used by agents after a human creates the Stripe account. Browser Checkout and human KYC remain primary paths \u2014 promising rails, not fully Agentypical enrolment. Evaluating, not Certified.",
+      "website": "https://stripe.com/",
+      "updated": "2026-09-26"
+    }
+  ],
   "index": "/directory.json",
+  "listing_schema": "/specs/listing.v1.json",
   "submit": "https://agentypical.com/list-my-service/",
-  "note": "No public known/evaluating/certified cards yet. Submissions go to review queue and are not auto-published."
+  "note": "Public cards are reviewed before publish. Status known|evaluating only for seeds \u2014 never fake Certified."
 }

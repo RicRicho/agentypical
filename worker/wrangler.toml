@@ -1,12 +1,4 @@
 name = "agentypical-questions"
-main = "questions.js"
+main = "questions-sw.js"
 compatibility_date = "2026-09-01"
-workers_dev = true
-
-[[kv_namespaces]]
-binding = "QUESTIONS"
-id = "REPLACE_AFTER_CREATE"
-preview_id = "REPLACE_AFTER_CREATE"
-
-# Route on agentypical.com (zone d9507009633690ea621cd0109c77767b):
-# agentypical.com/api/questions*
+# Deployed via Cloudflare Workers Scripts API (Cache API; no KV binding).

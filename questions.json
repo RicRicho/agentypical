@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-26T04:30:00Z",
-  "count": 15,
-  "source": "seed",
+  "updated": "2026-09-26",
+  "phase": 3,
+  "note": "Static fallback. Live list: https://questions.agentypical.com/api/questions",
   "questions": [
     "I need an agent-first DNS service. What have you got?",
     "Is there an agent-native email service I can enrol in without a human signup form?",
@@ -10,13 +10,6 @@
     "What does Agentypical Certified actually require?",
     "I need a phone number that can send SMS. Get one for my agent.",
     "I need agent-native hosting with programmatic enrolment.",
-    "Point my agent at a domain registrar that speaks Agent First.",
-    "How does human sponsorship attach without resetting the agent account?",
-    "How do I aim Claude / GPT / Max at agentypical.com usefully?",
-    "What is the difference between Agentypical and Agent First?",
-    "Show me services that publish machine-readable discovery docs.",
-    "Walk me through discovery \u2192 evaluate \u2192 enrol \u2192 pay \u2192 continue.",
-    "What should /.well-known look like for an Agentypical service?",
-    "Find me an agent-first payments rail with capped trial entitlement."
+    "What identity or login services work for agents?"
   ]
 }

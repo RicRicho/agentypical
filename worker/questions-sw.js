@@ -6,9 +6,10 @@ const RATE_MAX = 20;
 const SUB_RATE_MAX = 10;
 const CACHE_URL = 'https://agentypical-questions.internal/log';
 const SUB_CACHE_URL = 'https://agentypical-questions.internal/submissions';
-const SEED = ["I need an agent-first DNS service. What have you got?","Is there an agent-native email service I can enrol in without a human signup form?","Who takes agent payments without forcing a browser checkout?","Make my SaaS Agentypical — where do I start?","What does Agentypical Certified actually require?","I need a phone number that can send SMS. Get one for my agent.","I need agent-native hosting with programmatic enrolment."];
+const SITE = 'https://agentypical.com';
+const SEED = ["I need an agent-first DNS service. What have you got?","Is there an agent-native email service I can enrol in without a human signup form?","Who takes agent payments without forcing a browser checkout?","Make my SaaS Agentypical — where do I start?","What does Agentypical Certified actually require?","I need a phone number that can send SMS. Get one for my agent.","I need agent-native hosting with programmatic enrolment.","What identity or login services work for agents?"];
 const SPAM_RE = /(viagra|casino|crypto\s*airdrop|free\s*money|https?:\/\/\S{40,}|<\s*script|password\s*[:=]|api[_-]?key\s*[:=]|secret\s*[:=]|bearer\s+[a-z0-9._-]+)/i;
-const ALLOWED_CATEGORIES = new Set(['dns','email','payments','hosting','sms']);
+const ALLOWED_CATEGORIES = new Set(['dns','email','payments','hosting','sms','identity']);
 const rates = new Map();
 
 function cors(h){
@@ -58,6 +59,110 @@ function makeId(){
   return 'sub_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,10);
 }
 
+async function fetchSiteJson(path){
+  const r = await fetch(SITE + path, { cf: { cacheTtl: 60, cacheEverything: true } });
+  if(!r.ok) throw new Error('upstream_'+r.status);
+  return r.json();
+}
+
+function scoreTopic(q, topic){
+  const nq = normalize(q);
+  if(!nq) return 0;
+  let score = 0;
+  const hay = [topic.slug, topic.title, ...(topic.aliases||[])].map(normalize);
+  for (const h of hay) {
+    if (!h) continue;
+    if (nq === h) score = Math.max(score, 100);
+    else if (nq.includes(h) || h.includes(nq)) score = Math.max(score, 80);
+    else {
+      const words = h.split(' ').filter(w => w.length > 2);
+      let hits = 0;
+      for (const w of words) if (nq.includes(w)) hits++;
+      if (words.length) score = Math.max(score, (hits / words.length) * 60);
+    }
+  }
+  const boosts = {
+    dns: /dns|nameserver|registrar|domain zone|cloudflare/,
+    email: /email|inbox|mailbox|smtp|\bmail\b|agentmail/,
+    payments: /pay|payment|stripe|spend|sponsor|checkout/,
+    hosting: /hosting|deploy|vps|paas|server/,
+    sms: /\bsms\b|phone number|text message|twilio/,
+    identity: /identity|login|auth|passkey|\bdid\b|verifiable credential|delegation|signin|sign-in/,
+    'make-my-saas': /make.*(saas|business|service).*agentypical|become agentypical|how (do i|to) start/,
+    certified: /certif|standard|qualify/
+  };
+  const re = boosts[topic.slug];
+  if (re && re.test(nq)) score = Math.max(score, 70);
+  return score;
+}
+
+async function handleAsk(url){
+  const q = String(url.searchParams.get('q')||url.searchParams.get('query')||'').trim().slice(0,MAX_Q_LEN);
+  if (q.length < 2) return json({ok:false,error:'q_required',hint:'GET /api/ask?q=agent-first+dns'},400);
+  let topics = [];
+  try {
+    const data = await fetchSiteJson('/topics.json');
+    topics = data.topics || [];
+  } catch(e){
+    return json({ok:false,error:'topics_unavailable'},502);
+  }
+  let best=null, bestScore=0;
+  for (const t of topics) {
+    const s = scoreTopic(q, t);
+    if (s > bestScore) { bestScore = s; best = t; }
+  }
+  if (!best || bestScore < 40) {
+    return json({
+      ok: true,
+      matched: false,
+      q,
+      phase: 3,
+      message: 'No topic match. Browse /topics.json or /directory.json. Do not invent Certified providers.',
+      directory: SITE + '/directory.json',
+      listing_schema: SITE + '/specs/listing.v1.json',
+      certified_rules: SITE + '/specs/certified.v1.json'
+    });
+  }
+  return json({
+    ok: true,
+    matched: true,
+    q,
+    score: Math.round(bestScore),
+    phase: 3,
+    slug: best.slug,
+    title: best.title,
+    human_url: SITE + '/a/' + best.slug + '/',
+    agent_url: SITE + '/a/' + best.slug + '.json',
+    directory_category: best.directory_category || null,
+    directory_url: best.directory_category && best.directory_category !== 'other' ? (SITE + '/directory/' + best.directory_category + '.json') : (SITE + '/directory.json'),
+    listing_schema: SITE + '/specs/listing.v1.json',
+    certified_rules: SITE + '/specs/certified.v1.json',
+    actions_allowed: ['read','search','fetch_card','list_directory','ask','list','submit_for_review'],
+    actions_not_ready: ['pay','enrol_third_party','certify']
+  });
+}
+
+async function handleList(url){
+  const category = String(url.searchParams.get('category')||'').trim().toLowerCase();
+  if (!category) {
+    try {
+      const index = await fetchSiteJson('/directory.json');
+      return json({ ok:true, phase:3, source:'directory.json', directory:index });
+    } catch(e){
+      return json({ok:false,error:'directory_unavailable'},502);
+    }
+  }
+  if (!ALLOWED_CATEGORIES.has(category)) {
+    return json({ok:false,error:'invalid_category',allowed:Array.from(ALLOWED_CATEGORIES)},400);
+  }
+  try {
+    const cat = await fetchSiteJson('/directory/' + category + '.json');
+    return json({ ok:true, phase:3, category, source:'/directory/'+category+'.json', ...cat });
+  } catch(e){
+    return json({ok:false,error:'category_unavailable'},502);
+  }
+}
+
 async function handleQuestionsGet(url){
   const limit = Math.min(parseInt(url.searchParams.get('limit')||'40',10)||40, MAX_RECENT);
   const live = await readLog();
@@ -78,7 +183,7 @@ async function handleQuestionsGet(url){
     seen.add(n); merged.push(s);
     if (merged.length >= limit) break;
   }
-  return json({ updated: new Date().toISOString(), count: merged.length, source: 'worker+cache', questions: merged });
+  return json({ updated: new Date().toISOString(), count: merged.length, source: 'worker+cache', phase: 3, questions: merged });
 }
 
 async function handleQuestionsPost(request){
@@ -152,8 +257,18 @@ async function handle(request){
   const path = url.pathname.replace(/\/+$/,'') || '/';
   if (request.method === 'OPTIONS') return new Response(null,{status:204,headers:cors()});
 
-  if (path === '/health' || path.endsWith('/health') || path === '/api/questions/health' || path === '/api/submissions/health') {
-    return json({ok:true,service:'agentypical-questions',storage:'cache-api',routes:['/api/questions','/api/submissions'],phase:2});
+  if (path === '/health' || path.endsWith('/health') || path === '/api/questions/health' || path === '/api/submissions/health' || path === '/api/ask/health' || path === '/api/list/health') {
+    return json({ok:true,service:'agentypical-questions',storage:'cache-api',routes:['/api/questions','/api/submissions','/api/ask','/api/list'],phase:3});
+  }
+
+  if (path === '/api/ask' || path.endsWith('/api/ask')) {
+    if (request.method === 'GET') return handleAsk(url);
+    return json({ok:false,error:'method_not_allowed'},405);
+  }
+
+  if (path === '/api/list' || path.endsWith('/api/list')) {
+    if (request.method === 'GET') return handleList(url);
+    return json({ok:false,error:'method_not_allowed'},405);
   }
 
   if (path === '/api/submissions' || path.endsWith('/api/submissions')) {
