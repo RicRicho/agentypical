@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>List my service — Agentypical</title>
+<meta name="description" content="Submit an agent-native service for Agentypical directory review. Not auto-published.">
+<link rel="alternate" type="application/json" href="/directory.json">
+<style>
+  :root { --ink:#202124; --muted:#5f6368; --line:#dfe1e5; --blue:#1a73e8; --bg:#fff; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:var(--bg); color:var(--ink);
+    font-family: "Google Sans","Product Sans",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+  .wrap { min-height:100vh; display:flex; flex-direction:column; }
+  header { display:flex; justify-content:flex-end; gap:1.25rem; padding:0.85rem 1.25rem; font-size:0.875rem; }
+  header a { color:var(--muted); text-decoration:none; }
+  header a:hover { text-decoration:underline; }
+  main { flex:1; width:min(560px,100%); margin:0 auto; padding:1.5rem 1rem 3rem; }
+  .crumb { font-size:0.85rem; color:var(--muted); margin:0 0 1rem; }
+  .crumb a { color:var(--blue); text-decoration:none; }
+  h1 { font-size:1.6rem; font-weight:500; margin:0 0 0.5rem; }
+  .lead { color:var(--muted); line-height:1.5; margin:0 0 1.25rem; font-size:0.95rem; }
+  label { display:block; font-size:0.85rem; font-weight:500; margin:0.85rem 0 0.35rem; }
+  input[type=text], input[type=url], select, textarea {
+    width:100%; border:1px solid var(--line); border-radius:8px; padding:0.55rem 0.75rem; font-size:0.95rem;
+    font-family:inherit; }
+  textarea { min-height:5rem; resize:vertical; }
+  .check { display:flex; align-items:flex-start; gap:0.5rem; margin:1rem 0; font-size:0.9rem; }
+  .check input { margin-top:0.2rem; }
+  button[type=submit] { margin-top:1rem; background:var(--blue); color:#fff; border:0; border-radius:999px;
+    padding:0.55rem 1.25rem; font-size:0.95rem; font-weight:500; cursor:pointer; }
+  button[type=submit]:disabled { opacity:0.6; cursor:not-allowed; }
+  .note { font-size:0.8rem; color:var(--muted); margin-top:1rem; line-height:1.45; }
+  .msg { display:none; margin-top:1rem; padding:0.85rem 1rem; border-radius:8px; border:1px solid var(--line); font-size:0.9rem; }
+  .msg.ok { display:block; background:#e6f4ea; border-color:#ceead6; }
+  .msg.err { display:block; background:#fce8e6; border-color:#f5c2c0; }
+  footer { text-align:center; padding:1.5rem; color:var(--muted); font-size:0.8rem; }
+  footer a { color:var(--muted); }
+  .draft { position:fixed; top:0; left:0; right:0; background:#0b8043; color:#fff; font-size:0.75rem;
+    text-align:center; padding:0.35rem 0.5rem; z-index:9; }
+  body { padding-top:1.6rem; }
+</style>
+</head>
+<body>
+<div class="draft">LIVE on Agentypical.com · Phase 2 · 26 Sep 2026</div>
+<div class="wrap">
+  <header>
+    <a href="/">Home</a>
+    <a href="/directory.json">Directory JSON</a>
+    <a href="/agent/">For agents</a>
+  </header>
+  <main>
+    <p class="crumb"><a href="/">Agentypical</a> · list my service</p>
+    <h1>List my service</h1>
+    <p class="lead">Submit an agent-native service for <strong>review</strong>. Submissions are <strong>not</strong> auto-published as known, evaluating, or Certified. Public directory cards stay empty until reviewed.</p>
+    <form id="f" novalidate>
+      <label for="name">Service name</label>
+      <input id="name" name="name" type="text" required maxlength="120" placeholder="Acme Agent DNS">
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="">Select…</option>
+        <option value="dns">DNS</option>
+        <option value="email">Email</option>
+        <option value="payments">Payments</option>
+        <option value="hosting">Hosting</option>
+        <option value="sms">SMS / phone</option>
+      </select>
+      <label for="discovery_url">Discovery URL</label>
+      <input id="discovery_url" name="discovery_url" type="url" required maxlength="500" placeholder="https://example.com/.well-known/…">
+      <label class="check"><input id="agent_enrolment" name="agent_enrolment" type="checkbox"> Agent-capable enrolment (agents can enrol without a human-only signup wall)</label>
+      <label for="notes">Public notes (optional)</label>
+      <textarea id="notes" name="notes" maxlength="500" placeholder="What makes this Agentypical?"></textarea>
+      <label for="contact">Contact (optional, not published)</label>
+      <input id="contact" name="contact" type="text" maxlength="200" placeholder="you@example.com">
+      <button type="submit" id="go">Submit for review</button>
+      <div class="msg" id="msg" role="status"></div>
+      <p class="note">API: <code>POST https://questions.agentypical.com/api/submissions</code>. Public lists: <a href="/directory.json">/directory.json</a>. No fake Certified cards.</p>
+    </form>
+  </main>
+  <footer>Make your business Agentypical · <a href="/">Search</a> · <a href="/agent/">Agent brief</a></footer>
+</div>
+<script>
+const API = 'https://questions.agentypical.com/api/submissions';
+const params = new URLSearchParams(location.search);
+if (params.get('category')) {
+  const sel = document.getElementById('category');
+  if ([...sel.options].some(o => o.value === params.get('category'))) sel.value = params.get('category');
+}
+document.getElementById('f').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById('msg');
+  const btn = document.getElementById('go');
+  msg.className = 'msg'; msg.textContent = '';
+  const payload = {
+    name: document.getElementById('name').value.trim(),
+    category: document.getElementById('category').value,
+    discovery_url: document.getElementById('discovery_url').value.trim(),
+    agent_enrolment: document.getElementById('agent_enrolment').checked,
+    notes: document.getElementById('notes').value.trim() || undefined,
+    contact: document.getElementById('contact').value.trim() || undefined,
+    source: 'web'
+  };
+  if (!payload.name || !payload.category || !payload.discovery_url) {
+    msg.className = 'msg err'; msg.textContent = 'Name, category, and discovery URL are required.';
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Submitting…';
+  try {
+    const r = await fetch(API, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(payload) });
+    const data = await r.json().catch(()=>({}));
+    if (r.status === 201 || (r.ok && data.ok)) {
+      msg.className = 'msg ok';
+      msg.textContent = (data.message || 'Queued for review.') + (data.id ? ' Ref: ' + data.id : '') + ' It will not appear in /directory.json until reviewed.';
+      document.getElementById('f').reset();
+      if (params.get('category')) document.getElementById('category').value = params.get('category');
+    } else {
+      msg.className = 'msg err';
+      msg.textContent = 'Could not submit: ' + (data.error || r.status);
+    }
+  } catch (err) {
+    msg.className = 'msg err';
+    msg.textContent = 'Network error — try again shortly.';
+  }
+  btn.disabled = false; btn.textContent = 'Submit for review';
+});
+</script>
+</body>
+</html>
