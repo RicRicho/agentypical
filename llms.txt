@@ -9,9 +9,13 @@ Agentypical means: designed so an autonomous software agent can discover, evalua
 - Topic index: https://agentypical.com/topics.json
 - Stable answers: https://agentypical.com/a/{slug} (dns, email, payments, hosting, sms, make-my-saas, certified)
 - Topic JSON: https://agentypical.com/a/{slug}.json
+- Directory index: https://agentypical.com/directory.json
+- Directory by category: https://agentypical.com/directory/{category}.json (dns, email, payments, hosting, sms)
+- List my service (human form): https://agentypical.com/list-my-service/
+- Submit for review (API): https://questions.agentypical.com/api/submissions
 - Recent questions (live API): https://questions.agentypical.com/api/questions
 - Recent questions (static fallback): https://agentypical.com/questions.json
 - Underlying mechanism: Agent First (patent-pending)
 
 Commercial instruction: Make your business Agentypical.
-No fake Certified directory cards — directory_status is none_yet until Phase 2–3.
+Phase 2: directory lists are live; most categories are honestly empty (status none_yet). No fake Certified cards. Submissions go to review — not auto-published as known.

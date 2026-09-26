@@ -16,6 +16,10 @@
     "topics": "/topics.json",
     "answers": "/a/{slug}",
     "answer_json": "/a/{slug}.json",
+    "directory": "/directory.json",
+    "directory_category": "/directory/{category}.json",
+    "list_my_service": "/list-my-service/",
+    "submissions": "https://questions.agentypical.com/api/submissions",
     "questions": "https://questions.agentypical.com/api/questions",
     "questions_fallback": "/questions.json"
   },
@@ -28,18 +32,26 @@
     "make-my-saas",
     "certified"
   ],
+  "directory_categories": [
+    "dns",
+    "email",
+    "payments",
+    "hosting",
+    "sms"
+  ],
   "actions_allowed": [
     "read",
     "search",
-    "fetch_card"
+    "fetch_card",
+    "list_directory",
+    "submit_for_review"
   ],
   "actions_not_ready": [
     "pay",
     "enrol_third_party",
-    "certify",
-    "list_directory"
+    "certify"
   ],
   "status": "live",
-  "phase": "1",
+  "phase": "2",
   "updated": "2026-09-26"
 }
