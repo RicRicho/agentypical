@@ -60,10 +60,12 @@
 </style>
 </head>
 <body>
-<div class="draft">LIVE on Agentypical.com · Phase 1 · 26 Sep 2026</div>
+<div class="draft">LIVE on Agentypical.com · Phase 2 · 26 Sep 2026</div>
 <div class="wrap">
   <header>
     <a href="/agent/">For agents</a>
+    <a href="/list-my-service/">List my service</a>
+    <a href="/directory.json">Directory</a>
     <a href="/llms.txt">llms.txt</a>
     <a href="#aim">Aim your agent</a>
   </header>
@@ -81,7 +83,7 @@
     <div class="cta" id="aim">
       <strong>Humans:</strong> aim your agent at <code>agentypical.com</code>.
       Agents get a dense brief at <code>/agent/</code> — discovery, enrolment, payments, DNS, email, and more — without the brochure.
-      Stable answers live at <code>/a/{slug}</code>.
+      Stable answers live at <code>/a/{slug}</code>. Directory: <code>/directory.json</code> (honest empties OK). <a href="/list-my-service/">List my service</a>.
     </div>
     <section class="recent" aria-label="Recent questions">
       <h2>Recent questions</h2>
@@ -90,7 +92,7 @@
   </main>
   <footer>
     Make your business Agentypical · <a href="/agent/">Agent brief</a> ·
-    Agent First mechanism · <a href="/topics.json">topics.json</a>
+    Agent First mechanism · <a href="/topics.json">topics.json</a> · <a href="/directory.json">directory.json</a>
   </footer>
 </div>
 <script>
@@ -123,7 +125,6 @@ function scoreTopic(q, topic) {
       if (words.length) score = Math.max(score, (hits / words.length) * 60);
     }
   }
-  // keyword boosts for short seed words
   const boosts = {
     dns: /dns|nameserver|registrar|domain zone/,
     email: /email|inbox|mailbox|smtp|\bmail\b/,
@@ -159,7 +160,7 @@ async function logQuestion(q, matchedSlug) {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ q, matched_slug: matchedSlug || null, source: 'web' })
     });
-  } catch (e) { /* offline / worker not yet routed — static fallback still works */ }
+  } catch (e) { }
 }
 
 function showMiss(q) {
@@ -242,7 +243,7 @@ async function boot() {
   document.getElementById('recent').addEventListener('click', e => {
     const a = e.target.closest('a'); if (!a) return;
     if (a.getAttribute('href') === '#') { e.preventDefault(); handleQuery(a.dataset.q); }
-    else if (a.dataset.q) { /* allow navigation; still log */ logQuestion(a.dataset.q, null); }
+    else if (a.dataset.q) { logQuestion(a.dataset.q, null); }
   });
   document.getElementById('f').addEventListener('submit', e => {
     e.preventDefault();
