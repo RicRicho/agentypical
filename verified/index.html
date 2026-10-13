@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent-Ready Verified listing — Agentypical</title>
+<meta name="description" content="Agent-Ready Verified listing on Agentypical: A$149/month, granted only after a passing check by Humanless, re-checked monthly.">
+<link rel="alternate" type="application/json" href="/directory.json">
+<style>
+  :root { --ink:#202124; --muted:#5f6368; --line:#dfe1e5; --blue:#1a73e8; --bg:#fff; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:var(--bg); color:var(--ink);
+    font-family: "Google Sans","Product Sans",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+  .wrap { min-height:100vh; display:flex; flex-direction:column; }
+  header { display:flex; justify-content:flex-end; gap:1.25rem; padding:0.85rem 1.25rem; font-size:0.875rem; }
+  header a { color:var(--muted); text-decoration:none; }
+  header a:hover { text-decoration:underline; }
+  main { flex:1; width:min(560px,100%); margin:0 auto; padding:1.5rem 1rem 3rem; }
+  .crumb { font-size:0.85rem; color:var(--muted); margin:0 0 1rem; }
+  .crumb a { color:var(--blue); text-decoration:none; }
+  h1 { font-size:1.6rem; font-weight:500; margin:0 0 0.5rem; }
+  .lead { color:var(--muted); line-height:1.5; margin:0 0 1.25rem; font-size:0.95rem; }
+  label { display:block; font-size:0.85rem; font-weight:500; margin:0.85rem 0 0.35rem; }
+  input[type=text], input[type=url], select, textarea {
+    width:100%; border:1px solid var(--line); border-radius:8px; padding:0.55rem 0.75rem; font-size:0.95rem;
+    font-family:inherit; }
+  textarea { min-height:5rem; resize:vertical; }
+  .check { display:flex; align-items:flex-start; gap:0.5rem; margin:1rem 0; font-size:0.9rem; }
+  .check input { margin-top:0.2rem; }
+  button[type=submit] { margin-top:1rem; background:var(--blue); color:#fff; border:0; border-radius:999px;
+    padding:0.55rem 1.25rem; font-size:0.95rem; font-weight:500; cursor:pointer; }
+  button[type=submit]:disabled { opacity:0.6; cursor:not-allowed; }
+  .note { font-size:0.8rem; color:var(--muted); margin-top:1rem; line-height:1.45; }
+  .msg { display:none; margin-top:1rem; padding:0.85rem 1rem; border-radius:8px; border:1px solid var(--line); font-size:0.9rem; }
+  .msg.ok { display:block; background:#e6f4ea; border-color:#ceead6; }
+  .msg.err { display:block; background:#fce8e6; border-color:#f5c2c0; }
+  footer { text-align:center; padding:1.5rem; color:var(--muted); font-size:0.8rem; }
+  footer a { color:var(--muted); }
+  .draft { position:fixed; top:0; left:0; right:0; background:#0b8043; color:#fff; font-size:0.75rem;
+    text-align:center; padding:0.35rem 0.5rem; z-index:9; }
+  body { padding-top:1.6rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a href="/">Home</a><a href="/list-my-service/">List my service</a><a href="/directory.json">Directory</a><a href="/specs/certified/">Certified</a></header>
+<main>
+<p class="crumb"><a href="/">Agentypical</a> / Verified</p>
+<h1>Agent-Ready Verified listing</h1>
+<p class="lead">A badge on your Agentypical listing that says an AI agent really did sign up for your service and finish a core task, and that we checked the result ourselves.</p>
+<h2 style="font-size:1.1rem;font-weight:500">How it works</h2>
+<ol class="lead">
+<li>You ask for a check. <a href="https://humanless.tools/pilot/">Humanless</a> runs real agents through your sign-up and one core task, and verifies the end state independently (API, database or test inbox).</li>
+<li>Only if the check passes is the Verified badge added to your listing.</li>
+<li>We re-check every month. If a re-check fails, we tell you and the badge comes off until it passes again.</li>
+</ol>
+<p class="lead"><strong>A$149/month.</strong> You are billed only after a passing check. Cancel any time. Paying does not buy a pass: a failing service is not listed as Verified.</p>
+<p class="lead">No services are Verified yet. This is separate from the <a href="/specs/certified/">Certified</a> spec; we never add Certified or Verified cards without a real check.</p>
+<p><a href="mailto:miles@mail.ricricho.com?subject=Agent-Ready%20Verified%20listing" style="display:inline-block;background:var(--blue);color:#fff;border-radius:999px;padding:0.55rem 1.25rem;text-decoration:none">Email miles@mail.ricricho.com</a></p>
+<p class="note">Checks are run by Humanless (Miles Mercer). No captcha solving, no bypassing security controls, test accounts only.</p>
+</main>
+<footer><a href="/">Agentypical</a> · <a href="https://humanless.tools/">Humanless</a></footer>
+</div>
+</body>
+</html>
